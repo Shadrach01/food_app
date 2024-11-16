@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/routes/route_name.dart';
 import 'package:food_app/features/auth/log_in/view/login_page.dart';
 import 'package:food_app/features/auth/signup/view/signup_page.dart';
+import 'package:food_app/features/food_page/view/food_page.dart';
 import 'package:food_app/features/home_page/view/home_page.dart';
 import 'package:food_app/features/onboarding/view/onboarding_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -35,6 +36,11 @@ final goRouterProvider = Provider<GoRouter>(
           path: '/homeSearchPage',
           name: RouteName.homeSearchPageRoute,
           builder: (context, state) => const HomePageSearch(),
+        ),
+        GoRoute(
+          path: '/foodPage',
+          name: RouteName.foodPageRoute,
+          builder: (context, state) => const FoodPage(),
         ),
       ],
     );
