@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/core/common/widgets/app_container.dart';
+import 'package:food_app/core/common/widgets/food_category_container.dart';
 import 'package:food_app/core/utils/color_res.dart';
 
 class AllCategories extends StatelessWidget {
@@ -40,18 +40,34 @@ class AllCategories extends StatelessWidget {
         ),
         const SizedBox(height: 15),
         SizedBox(
-          height: 80,
+          height: 170,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
-              categoriesContainer(
-                isSelected: true,
-                text: "All",
+              _buildFoodCategory(
+                title: "Hot Dog",
+                price: '70',
               ),
-              categoriesContainer(text: "Hot Dog"),
-              categoriesContainer(text: "Burger"),
-              categoriesContainer(text: "Pizza"),
-              categoriesContainer(text: "Sharwarma"),
+              _buildFoodCategory(
+                title: "Pizza",
+                price: "30",
+              ),
+              _buildFoodCategory(
+                title: "Hot Dog",
+                price: '50',
+              ),
+              _buildFoodCategory(
+                title: "Burger",
+                price: '20',
+              ),
+              _buildFoodCategory(
+                title: "Pizza",
+                price: '37',
+              ),
+              _buildFoodCategory(
+                title: "Sharwarma",
+                price: '90',
+              ),
             ],
           ),
         ),
@@ -59,35 +75,22 @@ class AllCategories extends StatelessWidget {
     );
   }
 
-  Widget categoriesContainer({
-    bool isSelected = false,
-    String text = '',
+  Widget _buildFoodCategory({
+    required String title,
+    required String price,
   }) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
-      child: IntrinsicWidth(
-        child: appContainer(
-          borderRadius: 50,
-          containerColor: isSelected
-              ? ColorRes.containerKColor.withOpacity(.5)
-              : ColorRes.appKLightGrey.withOpacity(.5),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Row(
-              children: [
-                const CircleAvatar(
-                  radius: 23,
-                  backgroundColor: ColorRes.appKGrey,
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  text,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        width: 110,
+        child: FoodCategoryContainer(
+          title: title,
+          subTitle: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text("Starting"),
+              Text("\$$price"),
+            ],
           ),
         ),
       ),

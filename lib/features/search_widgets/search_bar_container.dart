@@ -6,11 +6,15 @@ import 'package:food_app/core/utils/text_res.dart';
 
 class SearchBarContainer extends StatelessWidget {
   final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final bool enabled;
   final void Function()? onTap;
   const SearchBarContainer({
     super.key,
     this.controller,
+    this.focusNode,
     this.onTap,
+    this.enabled = true,
   });
 
   @override
@@ -26,8 +30,9 @@ class SearchBarContainer extends StatelessWidget {
         hintText: TextRes.searchRestaurants,
         elevation: const WidgetStatePropertyAll(0),
         leading: const Icon(CupertinoIcons.search),
-        focusNode: FocusNode(),
+        focusNode: focusNode,
         onTap: onTap,
+        enabled: enabled,
       ),
     );
   }
