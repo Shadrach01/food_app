@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:food_app/core/common/widgets/custom_app_bar.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
-import 'package:food_app/features/search_widgets/popular_fast_food.dart';
-import 'package:food_app/features/search_widgets/recent_keywords.dart';
-import 'package:food_app/features/search_widgets/search_bar_container.dart';
-import 'package:food_app/features/search_widgets/suggested_restaurants.dart';
+import 'package:food_app/features/search_page/widgets/popular_fast_food.dart';
+import 'package:food_app/features/search_page/widgets/recent_keywords.dart';
+import 'package:food_app/features/search_page/widgets/search_bar_container.dart';
+import 'package:food_app/features/search_page/widgets/suggested_restaurants.dart';
 import 'package:go_router/go_router.dart';
 
 /// Screen for when the search bar is active
 class SearchPageWidgets extends StatelessWidget {
-  final TextEditingController controller = TextEditingController();
-  SearchPageWidgets({super.key});
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+
+  const SearchPageWidgets({
+    super.key,
+    this.controller,
+    this.focusNode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +58,7 @@ class SearchPageWidgets extends StatelessWidget {
           const SizedBox(height: 25),
           SearchBarContainer(
             controller: controller,
+            focusNode: focusNode,
           ),
           const SizedBox(height: 20),
           const RecentKeywords(),

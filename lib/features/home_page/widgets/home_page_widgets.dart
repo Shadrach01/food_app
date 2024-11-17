@@ -4,30 +4,20 @@ import 'package:food_app/core/utils/image_res.dart';
 import 'package:food_app/features/home_page/widgets/all_categories.dart';
 import 'package:food_app/core/common/widgets/custom_app_bar.dart';
 import 'package:food_app/features/home_page/widgets/open_restaurants.dart';
-import 'package:food_app/features/search_widgets/search_bar_container.dart';
+import 'package:food_app/features/search_page/widgets/search_bar_container.dart';
 import 'package:go_router/go_router.dart';
 
-class HomePageWidgets extends StatefulWidget {
+class HomePageWidgets extends StatelessWidget {
   final void Function()? onTap;
-  HomePageWidgets({
+  final TextEditingController? searchBarController;
+  final FocusNode? focusNode;
+
+  const HomePageWidgets({
     super.key,
     this.onTap,
+    this.searchBarController,
+    this.focusNode,
   });
-
-  @override
-  State<HomePageWidgets> createState() => _HomePageWidgetsState();
-}
-
-class _HomePageWidgetsState extends State<HomePageWidgets> {
-  final _searchBarController = TextEditingController();
-  final _focusNode = FocusNode();
-
-  @override
-  void dispose() {
-    _searchBarController.dispose();
-    _focusNode.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,11 +99,17 @@ class _HomePageWidgetsState extends State<HomePageWidgets> {
           ),
           const SizedBox(height: 20),
           SearchBarContainer(
-              controller: _searchBarController,
-              focusNode: _focusNode,
-              onTap: () => context.push(
-                    '/homeSearchPage',
-                  )),
+              controller: searchBarController,
+              focusNode: focusNode,
+              onTap: () {
+                // Hide the device keyboard before navigating
+                focusNode?.unfocus();
+
+                // Navigate to the search page
+                context.push(
+                  '/homeSearchPage',
+                );
+              }),
           const SizedBox(height: 30),
           const AllCategories(),
           const SizedBox(height: 30),
