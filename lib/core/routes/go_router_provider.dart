@@ -5,6 +5,7 @@ import 'package:food_app/features/auth/signup/view/signup_page.dart';
 import 'package:food_app/features/food_page/view/food_page.dart';
 import 'package:food_app/features/home_page/view/home_page.dart';
 import 'package:food_app/features/onboarding/view/onboarding_screen.dart';
+import 'package:food_app/features/search_page/view/search_page.dart';
 import 'package:go_router/go_router.dart';
 
 final goRouterProvider = Provider<GoRouter>(
@@ -35,7 +36,7 @@ final goRouterProvider = Provider<GoRouter>(
         GoRoute(
           path: '/homeSearchPage',
           name: RouteName.homeSearchPageRoute,
-          builder: (context, state) => const HomePageSearch(),
+          builder: (context, state) => const SearchPage(),
         ),
         GoRoute(
           path: '/foodPage',

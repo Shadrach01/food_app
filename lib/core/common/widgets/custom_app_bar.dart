@@ -8,6 +8,7 @@ class CustomAppBar extends StatelessWidget {
 
   final void Function()? onLeadTapped;
   final void Function()? onTitleTapped;
+
   const CustomAppBar({
     super.key,
     this.leadIcon,
@@ -29,8 +30,8 @@ class CustomAppBar extends StatelessWidget {
               child: Container(
                 height: 50,
                 width: 50,
-                decoration: const BoxDecoration(
-                  color: ColorRes.appKLightGrey,
+                decoration: BoxDecoration(
+                  color: ColorRes.appKGrey.withOpacity(.23),
                   shape: BoxShape.circle,
                 ),
                 child: leadIcon,

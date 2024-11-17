@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/core/common/widgets/food_category_container.dart';
 import 'package:food_app/core/utils/color_res.dart';
+import 'package:go_router/go_router.dart';
 
 class AllCategories extends StatelessWidget {
   const AllCategories({super.key});
@@ -45,26 +46,32 @@ class AllCategories extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: [
               _buildFoodCategory(
+                context,
                 title: "Hot Dog",
                 price: '70',
               ),
               _buildFoodCategory(
+                context,
                 title: "Pizza",
                 price: "30",
               ),
               _buildFoodCategory(
+                context,
                 title: "Hot Dog",
                 price: '50',
               ),
               _buildFoodCategory(
+                context,
                 title: "Burger",
                 price: '20',
               ),
               _buildFoodCategory(
+                context,
                 title: "Pizza",
                 price: '37',
               ),
               _buildFoodCategory(
+                context,
                 title: "Sharwarma",
                 price: '90',
               ),
@@ -75,7 +82,8 @@ class AllCategories extends StatelessWidget {
     );
   }
 
-  Widget _buildFoodCategory({
+  Widget _buildFoodCategory(
+    BuildContext context, {
     required String title,
     required String price,
   }) {
@@ -84,6 +92,7 @@ class AllCategories extends StatelessWidget {
       child: SizedBox(
         width: 110,
         child: FoodCategoryContainer(
+          onTap: () => context.push('/foodPage'),
           title: title,
           subTitle: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

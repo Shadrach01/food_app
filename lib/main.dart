@@ -5,7 +5,7 @@ import 'package:food_app/core/secrets/secret_keys.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
-  // initialize all widgtes and dependencies
+  // initialize all widgets and dependencies
   WidgetsFlutterBinding.ensureInitialized();
 
   // Supabase setup
