@@ -73,15 +73,7 @@ class CustomAppBar extends StatelessWidget {
         // APP BAR TRAILING WIDGET
         GestureDetector(
           onTap: onTrailingTapped,
-          child: Container(
-            height: containerHeight,
-            width: containerWidth,
-            decoration: BoxDecoration(
-              color: trailingContainerColor,
-              shape: BoxShape.circle,
-            ),
-            child: trailingIcon,
-          ),
+          child: trailingIcon,
         )
       ],
     );
