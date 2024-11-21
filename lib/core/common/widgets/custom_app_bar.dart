@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/core/utils/image_res.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../utils/color_res.dart';
 
 class CustomAppBar extends StatelessWidget {
   final Widget? leadIcon;
@@ -36,15 +40,22 @@ class CustomAppBar extends StatelessWidget {
           children: [
             // APP BAR LEAD ICON
             GestureDetector(
-              onTap: onLeadTapped,
+              onTap: () => onLeadTapped ?? context.pop(),
               child: Container(
                 height: containerHeight,
                 width: containerWidth,
                 decoration: BoxDecoration(
-                  color: leadingContainerColor,
+                  color: leadingContainerColor ??
+                      ColorRes.appKGrey.withOpacity(.2),
                   shape: BoxShape.circle,
                 ),
-                child: Center(child: leadIcon),
+                child: Center(
+                  child: leadIcon ??
+                      Image.asset(
+                        ImageRes.icon,
+                        color: ColorRes.appKDarkBlack,
+                      ),
+                ),
               ),
             ),
             const SizedBox(width: 15),

@@ -26,8 +26,6 @@ class SearchPageWidgets extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           CustomAppBar(
-            leadIcon: Image.asset(ImageRes.icon),
-            onLeadTapped: () => context.pop(),
             title: const Text(
               "Search",
               style: TextStyle(fontSize: 20),

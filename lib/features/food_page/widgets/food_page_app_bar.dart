@@ -20,7 +20,6 @@ class FoodPageAppBar extends StatelessWidget {
         ImageRes.icon,
         color: ColorRes.appKDarkBlack,
       ),
-      onLeadTapped: () => context.pop(),
       title: Container(
         height: 50,
         width: 120,

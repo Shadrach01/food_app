@@ -70,7 +70,6 @@ class HomePageWidgets extends StatelessWidget {
   // App bar for the home page from the custom App AppBar
   Widget homePageAppBar() {
     return CustomAppBar(
-      leadingContainerColor: ColorRes.appKGrey.withOpacity(.2),
       trailingContainerColor: ColorRes.appKDarkBlack,
       leadIcon: Image.asset(
         ImageRes.menu,

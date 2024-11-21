@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/core/common/widgets/app_container.dart';
 import 'package:food_app/core/utils/color_res.dart';
+import 'package:go_router/go_router.dart';
 
 class AddToCartWidget extends StatelessWidget {
   const AddToCartWidget({super.key});
@@ -86,7 +87,9 @@ class AddToCartWidget extends StatelessWidget {
               )
             ],
           ),
-          addToCartButton(onTap: () {}),
+          addToCartButton(
+            onTap: () => context.push('/editCart'),
+          ),
         ],
       ),
     );

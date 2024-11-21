@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/routes/route_name.dart';
 import 'package:food_app/features/auth/log_in/view/login_page.dart';
 import 'package:food_app/features/auth/signup/view/signup_page.dart';
+import 'package:food_app/features/edit_cart/view/edit_cart_page.dart';
 import 'package:food_app/features/food_details/view/food_details_page.dart';
 import 'package:food_app/features/food_page/view/food_page.dart';
 import 'package:food_app/features/home_page/view/home_page.dart';
@@ -48,6 +49,11 @@ final goRouterProvider = Provider<GoRouter>(
           path: '/foodDetails',
           name: RouteName.foodDetailsRoute,
           builder: (context, state) => const FoodDetailsPage(),
+        ),
+        GoRoute(
+          path: '/editCart',
+          name: RouteName.editCartRoute,
+          builder: (context, state) => const EditCartPage(),
         ),
       ],
     );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_app/core/common/widgets/custom_app_bar.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
-import 'package:go_router/go_router.dart';
 
 /// The food Image
 class FoodImageContainer extends StatelessWidget {
@@ -35,13 +34,6 @@ class FoodImageContainer extends StatelessWidget {
                 child: CustomAppBar(
                   leadingContainerColor: ColorRes.appKWhite,
                   trailingContainerColor: ColorRes.appKWhite,
-                  onLeadTapped: () => context.pop(),
-                  leadIcon: Image.asset(
-                    ImageRes.icon,
-                    width: 30,
-                    height: 30,
-                    color: ColorRes.appKDarkBlack,
-                  ),
                   trailingIcon: Image.asset(
                     ImageRes.heart,
                     width: 6,

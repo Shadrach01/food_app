@@ -6,4 +6,5 @@ class RouteName {
   static const String homeSearchPageRoute = 'homeSearchPage';
   static const String foodPageRoute = 'foodPage';
   static const String foodDetailsRoute = 'foodDetails';
+  static const String editCartRoute = 'editCart';
 }
