@@ -25,61 +25,7 @@ class HomePageWidgets extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 20),
-          CustomAppBar(
-            leadIcon: Image.asset(
-              ImageRes.menu,
-            ),
-            title: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "DELIVER TO",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: ColorRes.containerKColor,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Dumaks Office",
-                    ),
-                    const SizedBox(width: 5),
-                    Image.asset(
-                      ImageRes.polygon,
-                      width: 15,
-                      height: 15,
-                    )
-                  ],
-                ),
-              ],
-            ),
-            trailingIcon: Badge(
-              label: const Text("2"),
-              textStyle: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-              backgroundColor: ColorRes.containerKColor,
-              textColor: ColorRes.appKWhite,
-              offset: const Offset(-10, 0),
-              padding: const EdgeInsets.all(5),
-              child: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: const BoxDecoration(
-                    color: ColorRes.appKDarkBlack,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.shopping_bag_outlined,
-                    color: ColorRes.appKWhite,
-                  )),
-            ),
-          ),
+          homePageAppBar(),
           const SizedBox(height: 25),
           const Row(
             children: [
@@ -117,6 +63,62 @@ class HomePageWidgets extends StatelessWidget {
             child: OpenRestaurants(),
           ),
         ],
+      ),
+    );
+  }
+
+  // App bar for the home page from the custom App AppBar
+  Widget homePageAppBar() {
+    return CustomAppBar(
+      leadingContainerColor: ColorRes.appKGrey.withOpacity(.2),
+      trailingContainerColor: ColorRes.appKDarkBlack,
+      leadIcon: Image.asset(
+        ImageRes.menu,
+      ),
+      title: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "DELIVER TO",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: ColorRes.containerKColor,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                "Dumaks Office",
+              ),
+              const SizedBox(width: 5),
+              Image.asset(
+                ImageRes.polygon,
+                width: 15,
+                height: 15,
+              )
+            ],
+          ),
+        ],
+      ),
+      trailingIcon: const Badge(
+        label: Text("2"),
+        textStyle: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+        ),
+        backgroundColor: ColorRes.containerKColor,
+        textColor: ColorRes.appKWhite,
+        offset: Offset(-10, 0),
+        padding: EdgeInsets.all(5),
+        child: Center(
+          child: Icon(
+            Icons.shopping_bag_outlined,
+            color: ColorRes.appKWhite,
+          ),
+        ),
       ),
     );
   }

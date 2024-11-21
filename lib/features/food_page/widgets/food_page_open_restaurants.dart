@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/core/common/widgets/app_container.dart';
+import 'package:food_app/core/common/widgets/rate_row.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
 
@@ -78,75 +79,9 @@ class RestaurantContainer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          const ContainerRow(),
+          const RateAndDelivery(),
         ],
       ),
-    );
-  }
-}
-
-class ContainerRow extends StatelessWidget {
-  const ContainerRow({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              ImageRes.star,
-              color: ColorRes.containerKColor,
-            ),
-            const SizedBox(width: 6),
-            const Text(
-              "4.7",
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 15,
-              ),
-            )
-          ],
-        ),
-        const SizedBox(width: 15),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              ImageRes.car,
-              color: ColorRes.containerKColor,
-            ),
-            const SizedBox(width: 10),
-            const Text(
-              "Free",
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            )
-          ],
-        ),
-        const SizedBox(width: 15),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              ImageRes.watch,
-              color: ColorRes.containerKColor,
-            ),
-            const SizedBox(width: 10),
-            const Text(
-              "20 min",
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            )
-          ],
-        ),
-      ],
     );
   }
 }

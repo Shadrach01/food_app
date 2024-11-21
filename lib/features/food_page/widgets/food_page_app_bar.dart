@@ -58,8 +58,8 @@ class FoodPageAppBar extends StatelessWidget {
       trailingIcon: Row(
         children: [
           Container(
-            height: 45,
-            width: 45,
+            height: 40,
+            width: 40,
             decoration: const BoxDecoration(
               color: ColorRes.appKDarkBlack,
               shape: BoxShape.circle,
@@ -69,10 +69,9 @@ class FoodPageAppBar extends StatelessWidget {
               color: ColorRes.appKWhite,
             ),
           ),
-          const SizedBox(width: 10),
           Container(
-            height: 45,
-            width: 45,
+            height: 40,
+            width: 40,
             decoration: BoxDecoration(
               color: ColorRes.appKGrey.withOpacity(.23),
               shape: BoxShape.circle,

@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/core/common/widgets/app_container.dart';
+import 'package:food_app/core/common/widgets/rate_row.dart';
 import 'package:food_app/core/utils/color_res.dart';
 
 class OpenRestaurants extends StatelessWidget {
@@ -42,7 +42,7 @@ class OpenRestaurants extends StatelessWidget {
         const SizedBox(height: 15),
         Expanded(
           child: ListView(
-            children: [
+            children: const [
               RestaurantContainer(
                 restaurantName: "Rose Garden Restaurant",
               ),
@@ -68,6 +68,7 @@ class OpenRestaurants extends StatelessWidget {
 
 class RestaurantContainer extends StatelessWidget {
   final String restaurantName;
+
   const RestaurantContainer({
     super.key,
     required this.restaurantName,
@@ -102,75 +103,9 @@ class RestaurantContainer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          const ContainerRow(),
+          const RateAndDelivery(),
         ],
       ),
-    );
-  }
-}
-
-class ContainerRow extends StatelessWidget {
-  const ContainerRow({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              CupertinoIcons.star,
-              color: ColorRes.containerKColor,
-            ),
-            SizedBox(width: 6),
-            Text(
-              "4.7",
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 15,
-              ),
-            )
-          ],
-        ),
-        SizedBox(width: 25),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.local_shipping,
-              color: ColorRes.containerKColor,
-            ),
-            SizedBox(width: 10),
-            Text(
-              "Free",
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            )
-          ],
-        ),
-        SizedBox(width: 25),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              CupertinoIcons.clock,
-              color: ColorRes.containerKColor,
-            ),
-            SizedBox(width: 10),
-            Text(
-              "20 min",
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            )
-          ],
-        ),
-      ],
     );
   }
 }

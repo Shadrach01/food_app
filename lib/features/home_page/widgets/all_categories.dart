@@ -88,9 +88,9 @@ class AllCategories extends StatelessWidget {
     required String price,
   }) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(right: 30.0),
       child: SizedBox(
-        width: 110,
+        width: 140,
         child: FoodCategoryContainer(
           onTap: () => context.push('/foodPage'),
           title: title,

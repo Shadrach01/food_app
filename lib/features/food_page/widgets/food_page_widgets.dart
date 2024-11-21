@@ -10,22 +10,31 @@ class FoodPageWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: 20,
-          right: 20,
-          left: 20,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FoodPageAppBar(),
-            SizedBox(height: 20),
-            PopularFoodGridLayout(),
-            SizedBox(height: 20),
-            FoodPageOpenRestaurants(),
-          ],
-        ),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+              right: 50.0,
+              top: 20,
+            ),
+            child: FoodPageAppBar(),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              right: 20,
+              left: 20,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 20),
+                PopularFoodGridLayout(),
+                SizedBox(height: 20),
+                FoodPageOpenRestaurants(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

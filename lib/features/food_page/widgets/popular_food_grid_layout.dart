@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/core/common/widgets/food_category_container.dart';
 import 'package:food_app/core/utils/color_res.dart';
+import 'package:go_router/go_router.dart';
 
 class PopularFoodGridLayout extends StatelessWidget {
   const PopularFoodGridLayout({super.key});
@@ -33,7 +34,7 @@ class PopularFoodGridLayout extends StatelessWidget {
             ),
             itemCount: 10, // The number of items to display
             itemBuilder: (context, index) {
-              return foodTypeContainer();
+              return foodTypeContainer(context);
             },
           ),
         ),
@@ -41,45 +42,48 @@ class PopularFoodGridLayout extends StatelessWidget {
     );
   }
 
-  Widget foodTypeContainer() {
-    return FoodCategoryContainer(
-      title: "Pansi Restaurant",
-      subTitle: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Uttora Coffee House",
-            style: TextStyle(
-              color: ColorRes.appKGrey,
-              fontSize: 13,
+  Widget foodTypeContainer(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.push('/foodDetails'),
+      child: FoodCategoryContainer(
+        title: "Pansi Restaurant",
+        subTitle: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Uttora Coffee House",
+              style: TextStyle(
+                color: ColorRes.appKGrey,
+                fontSize: 13,
+              ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                "\$75",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "\$75",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              Container(
-                height: 30,
-                width: 30,
-                decoration: const BoxDecoration(
-                  color: ColorRes.containerKColor,
-                  shape: BoxShape.circle,
+                Container(
+                  height: 30,
+                  width: 30,
+                  decoration: const BoxDecoration(
+                    color: ColorRes.containerKColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.add,
+                    color: ColorRes.appKWhite,
+                  ),
                 ),
-                child: const Icon(
-                  Icons.add,
-                  color: ColorRes.appKWhite,
-                ),
-              ),
-            ],
-          )
-        ],
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
