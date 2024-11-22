@@ -11,7 +11,8 @@ class CustomAppBar extends StatelessWidget {
   final double containerHeight;
   final double containerWidth;
   final Color? leadingContainerColor;
-  final Color? trailingContainerColor;
+
+  final Color? leadIconColor;
 
   final void Function()? onLeadTapped;
   final void Function()? onTitleTapped;
@@ -24,7 +25,7 @@ class CustomAppBar extends StatelessWidget {
     this.containerHeight = 50,
     this.containerWidth = 50,
     this.leadingContainerColor,
-    this.trailingContainerColor,
+    this.leadIconColor,
     this.trailingIcon,
     this.onLeadTapped,
     this.onTitleTapped,
@@ -53,7 +54,8 @@ class CustomAppBar extends StatelessWidget {
                   child: leadIcon ??
                       Image.asset(
                         ImageRes.icon,
-                        color: ColorRes.appKDarkBlack,
+                        color:
+                            leadIconColor ?? ColorRes.appKDarkBlack,
                       ),
                 ),
               ),

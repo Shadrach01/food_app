@@ -12,6 +12,7 @@ class AppTextfield extends StatelessWidget {
   final IconData? surffixIcon;
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
+  final bool readOnly;
   const AppTextfield({
     super.key,
     this.controller,
@@ -23,6 +24,7 @@ class AppTextfield extends StatelessWidget {
     this.surffixIcon,
     this.textInputAction,
     this.keyboardType,
+    this.readOnly = false,
   });
 
   @override
@@ -42,6 +44,7 @@ class AppTextfield extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(horizontal: 20)),
         textInputAction: textInputAction,
         keyboardType: keyboardType,
+        readOnly: readOnly,
       ),
     );
   }

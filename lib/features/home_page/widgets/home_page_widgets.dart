@@ -70,7 +70,6 @@ class HomePageWidgets extends StatelessWidget {
   // App bar for the home page from the custom App AppBar
   Widget homePageAppBar() {
     return CustomAppBar(
-      trailingContainerColor: ColorRes.appKDarkBlack,
       leadIcon: Image.asset(
         ImageRes.menu,
       ),
@@ -102,20 +101,28 @@ class HomePageWidgets extends StatelessWidget {
           ),
         ],
       ),
-      trailingIcon: const Badge(
-        label: Text("2"),
-        textStyle: TextStyle(
+      trailingIcon: Badge(
+        label: const Text("2"),
+        textStyle: const TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.bold,
         ),
         backgroundColor: ColorRes.containerKColor,
         textColor: ColorRes.appKWhite,
-        offset: Offset(-10, 0),
-        padding: EdgeInsets.all(5),
-        child: Center(
-          child: Icon(
-            Icons.shopping_bag_outlined,
-            color: ColorRes.appKWhite,
+        offset: const Offset(-10, 0),
+        padding: const EdgeInsets.all(5),
+        child: Container(
+          height: 50,
+          width: 50,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: ColorRes.appKDarkBlack,
+          ),
+          child: const Center(
+            child: Icon(
+              Icons.shopping_bag_outlined,
+              color: ColorRes.appKWhite,
+            ),
           ),
         ),
       ),

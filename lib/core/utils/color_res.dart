@@ -8,6 +8,6 @@ class ColorRes {
   static const Color appKGrey = Color(0xFF646982);
   static const Color appKTransparent = Colors.transparent;
   static const Color appKBlack = Color(0xFF32343E);
-  static const Color appKDarkBlack = Color(0xFF121223);
+  static const Color appKDarkBlack = Color(0xFF010203);
   static const Color appKLightGrey = Color(0xFFE3EBF2);
 }

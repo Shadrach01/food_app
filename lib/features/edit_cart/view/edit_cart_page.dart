@@ -8,6 +8,7 @@ class EditCartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: ColorRes.appKDarkBlack,
       body: EditCartWidgets(),
     );
   }

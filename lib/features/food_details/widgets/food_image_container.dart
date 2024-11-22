@@ -33,7 +33,6 @@ class FoodImageContainer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: CustomAppBar(
                   leadingContainerColor: ColorRes.appKWhite,
-                  trailingContainerColor: ColorRes.appKWhite,
                   trailingIcon: Image.asset(
                     ImageRes.heart,
                     width: 6,
