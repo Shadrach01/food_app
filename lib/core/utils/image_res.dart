@@ -1,7 +1,6 @@
 class ImageRes {
   ImageRes._();
 
-
 // For the images
   static const String _imageBase = "assets/images";
 
@@ -12,7 +11,16 @@ class ImageRes {
   static const String facebookLogo = '$_imageBase/facebook_logo.png';
   static const String twitterLogo = '$_imageBase/twitter_logo.png';
   static const String appleLogo = '$_imageBase/apple_logo.jpg';
-  static const String accessLocation = '$_imageBase/location_image.jpg';
+  static const String accessLocation =
+      '$_imageBase/location_image.jpg';
+  static const String visaLogo = '$_imageBase/visa_logo.png';
+  static const String emptyMasterCard =
+      '$_imageBase/empty_master_card.png';
+  static const String cashLogo = '$_imageBase/cash.png';
+  static const String paypalLogo = '$_imageBase/paypal_logo.png';
+  static const String masterCard = '$_imageBase/master_card_logo.png';
+  static const String paymentSuccessful =
+      '$_imageBase/payment_successful.png';
 
   // For each icons
   static const String _iconBase = "assets/icons";
@@ -49,5 +57,4 @@ class ImageRes {
   static const String user = '$_iconBase/User.png';
   static const String vector = '$_iconBase/Vector.png';
   static const String watch = '$_iconBase/Watch.png';
-
 }

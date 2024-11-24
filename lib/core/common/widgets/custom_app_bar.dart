@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/core/utils/image_res.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../utils/color_res.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -75,8 +74,12 @@ class CustomAppBar extends StatelessWidget {
         // APP BAR TRAILING WIDGET
         GestureDetector(
           onTap: onTrailingTapped,
-          child: trailingIcon,
-        )
+          child: trailingIcon ??
+              const SizedBox(
+                width: 50,
+                height: 50,
+              ),
+        ),
       ],
     );
   }

@@ -33,12 +33,14 @@ class OnboardingButtons extends ConsumerWidget {
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.bounceInOut,
               );
-              ref.read(indexDotProvider.notifier).changeIndex(index + 1);
+              ref
+                  .read(indexDotProvider.notifier)
+                  .changeIndex(index + 1);
             } else {
               context.go('/login');
             }
           },
-          child: appContainer(
+          child: AppContainer(
             height: 50,
             child: Text(
               index < 3 ? "N E X T" : "GET STARTED",
@@ -55,7 +57,7 @@ class OnboardingButtons extends ConsumerWidget {
           onTap: () {
             context.go('/login');
           },
-          child: appContainer(
+          child: AppContainer(
             height: 50,
             containerColor: ColorRes.appKTransparent,
             child: const Text(

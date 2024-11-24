@@ -5,6 +5,7 @@ import 'package:food_app/core/utils/color_res.dart';
 class SignupButton extends StatelessWidget {
   final void Function()? onSignUp;
   final bool isLoading;
+
   const SignupButton({
     super.key,
     required this.onSignUp,
@@ -15,7 +16,7 @@ class SignupButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onSignUp,
-      child: appContainer(
+      child: AppContainer(
         child: isLoading
             ? const Center(
                 child: CircularProgressIndicator(
@@ -23,18 +24,14 @@ class SignupButton extends StatelessWidget {
                 ),
               )
             : const Text(
-          "SIGN UP",
-          style: TextStyle(
-            color: ColorRes.appKWhite,
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+                "SIGN UP",
+                style: TextStyle(
+                  color: ColorRes.appKWhite,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
       ),
     );
   }
 }
-
-
-
-

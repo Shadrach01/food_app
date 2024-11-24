@@ -61,7 +61,8 @@ class _AccessLocationState extends State<AccessLocation> {
                   CameraUpdate.newCameraPosition(
                     CameraPosition(
                       zoom: 30,
-                      target: LatLng(position.latitude, position.longitude),
+                      target: LatLng(
+                          position.latitude, position.longitude),
                     ),
                   ),
                 );
@@ -69,12 +70,13 @@ class _AccessLocationState extends State<AccessLocation> {
                 marker.add(
                   Marker(
                     markerId: const MarkerId("This is my location"),
-                    position: LatLng(position.latitude, position.longitude),
+                    position:
+                        LatLng(position.latitude, position.longitude),
                   ),
                 );
                 setState(() {});
               },
-              child: appContainer(
+              child: AppContainer(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

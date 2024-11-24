@@ -68,6 +68,7 @@ class FoodPageAppBar extends StatelessWidget {
               color: ColorRes.appKWhite,
             ),
           ),
+          const SizedBox(width: 8),
           Container(
             height: 40,
             width: 40,

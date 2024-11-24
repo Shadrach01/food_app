@@ -13,6 +13,7 @@ class AppTextfield extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
   final bool readOnly;
+
   const AppTextfield({
     super.key,
     this.controller,
@@ -29,7 +30,7 @@ class AppTextfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return appContainer(
+    return AppContainer(
       containerColor: ColorRes.appKLightGrey,
       child: TextFormField(
         controller: controller,
@@ -38,10 +39,13 @@ class AppTextfield extends StatelessWidget {
         validator: validator,
         decoration: InputDecoration(
             border: InputBorder.none,
-            prefixIcon: preffixIcon != null ? Icon(preffixIcon) : null,
-            suffixIcon: surffixIcon != null ? Icon(surffixIcon) : null,
+            prefixIcon:
+                preffixIcon != null ? Icon(preffixIcon) : null,
+            suffixIcon:
+                surffixIcon != null ? Icon(surffixIcon) : null,
             suffixIconColor: ColorRes.appKGrey,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 20)),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 20)),
         textInputAction: textInputAction,
         keyboardType: keyboardType,
         readOnly: readOnly,

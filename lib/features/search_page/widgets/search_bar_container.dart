@@ -9,6 +9,7 @@ class SearchBarContainer extends StatelessWidget {
   final FocusNode? focusNode;
   final bool enabled;
   final void Function()? onTap;
+
   const SearchBarContainer({
     super.key,
     this.controller,
@@ -19,11 +20,12 @@ class SearchBarContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return appContainer(
+    return AppContainer(
       containerColor: ColorRes.appKBlack.withOpacity(.1),
       child: SearchBar(
         controller: controller,
-        backgroundColor: const WidgetStatePropertyAll(ColorRes.appKTransparent),
+        backgroundColor:
+            const WidgetStatePropertyAll(ColorRes.appKTransparent),
         padding: const WidgetStatePropertyAll(
           EdgeInsets.only(left: 10),
         ),

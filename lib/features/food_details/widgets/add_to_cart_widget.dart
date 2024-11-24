@@ -99,7 +99,7 @@ class AddToCartWidget extends StatelessWidget {
   Widget addToCartButton({void Function()? onTap}) {
     return GestureDetector(
       onTap: onTap,
-      child: appContainer(
+      child: AppContainer(
         child: const Text(
           "ADD TO CART",
           style: TextStyle(

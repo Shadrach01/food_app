@@ -82,7 +82,7 @@ class RestaurantContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          appContainer(
+          AppContainer(
             containerColor: ColorRes.appKGrey,
             height: 150,
             child: const Row(),

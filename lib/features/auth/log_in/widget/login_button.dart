@@ -9,7 +9,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: appContainer(
+      child: AppContainer(
         child: const Text(
           "LOG IN",
           style: TextStyle(

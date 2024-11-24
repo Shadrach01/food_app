@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:food_app/core/common/widgets/app_container.dart';
 import 'package:food_app/core/common/widgets/app_textfields.dart';
 import 'package:food_app/core/utils/color_res.dart';
+import 'package:go_router/go_router.dart';
 
 class DeliveryAndPlaceOrderContainer extends StatelessWidget {
   const DeliveryAndPlaceOrderContainer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,6 +26,7 @@ class DeliveryAndPlaceOrderContainer extends StatelessWidget {
       child: Column(
         children: [
           const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
@@ -91,7 +94,7 @@ class DeliveryAndPlaceOrderContainer extends StatelessWidget {
           ),
           const SizedBox(height: 60),
           placeOrderButton(
-            onTap: () {},
+            onTap: () => context.push('/paymentMethod'),
           ),
         ],
       ),
@@ -102,7 +105,7 @@ class DeliveryAndPlaceOrderContainer extends StatelessWidget {
   Widget placeOrderButton({void Function()? onTap}) {
     return GestureDetector(
       onTap: onTap,
-      child: appContainer(
+      child: AppContainer(
         child: const Text(
           "PLACE ORDER",
           style: TextStyle(
