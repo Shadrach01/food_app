@@ -4,6 +4,7 @@ import 'package:food_app/features/add_card/view/add_card_page.dart';
 import 'package:food_app/features/auth/log_in/view/login_page.dart';
 import 'package:food_app/features/auth/signup/view/signup_page.dart';
 import 'package:food_app/features/edit_cart/view/edit_cart_page.dart';
+import 'package:food_app/features/edit_profile/view/edit_profile_page.dart';
 import 'package:food_app/features/food_details/view/food_details_page.dart';
 import 'package:food_app/features/food_page/view/food_page.dart';
 import 'package:food_app/features/home_page/view/home_page.dart';
@@ -96,6 +97,11 @@ final goRouterProvider = Provider<GoRouter>(
           path: '/personalProfilePage',
           name: RouteName.personalProfileRoute,
           builder: (context, state) => const PersonalProfilePage(),
+        ),
+        GoRoute(
+          path: '/editProfilePage',
+          name: RouteName.editProfileRoute,
+          builder: (context, state) => const EditProfilePage(),
         ),
       ],
     );

@@ -14,4 +14,5 @@ class RouteName {
   static const String myOrdersRoute = 'myOrders';
   static const String profileRoute = 'profilePage';
   static const String personalProfileRoute = 'personalProfilePage';
+  static const String editProfileRoute = 'editProfilePage';
 }
