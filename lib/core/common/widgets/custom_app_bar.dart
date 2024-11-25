@@ -10,9 +10,7 @@ class CustomAppBar extends StatelessWidget {
   final double containerHeight;
   final double containerWidth;
   final Color? leadingContainerColor;
-
   final Color? leadIconColor;
-
   final void Function()? onLeadTapped;
   final void Function()? onTitleTapped;
   final void Function()? onTrailingTapped;
@@ -40,7 +38,13 @@ class CustomAppBar extends StatelessWidget {
           children: [
             // APP BAR LEAD ICON
             GestureDetector(
-              onTap: () => onLeadTapped ?? context.pop(),
+              onTap: () {
+                if (onLeadTapped != null) {
+                  onLeadTapped!.call();
+                } else {
+                  context.pop();
+                }
+              },
               child: Container(
                 height: containerHeight,
                 width: containerWidth,

@@ -11,4 +11,7 @@ class RouteName {
   static const String addCardRoute = 'addCard';
   static const String paymentSuccessfulRoute = 'paymentSuccessful';
   static const String trackOrderRoute = 'trackOrder';
+  static const String myOrdersRoute = 'myOrders';
+  static const String profileRoute = 'profilePage';
+  static const String personalProfileRoute = 'personalProfilePage';
 }

@@ -17,4 +17,6 @@ class TextRes {
   static const String noCard = "No master card added";
   static const String paymentSuccessful =
       "You have successfully made a payment, enjoy our service!";
+
+  static const String deliveryTime = "Estimated Delivery Time";
 }

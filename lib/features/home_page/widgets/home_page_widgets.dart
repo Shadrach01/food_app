@@ -25,7 +25,9 @@ class HomePageWidgets extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 20),
-          homePageAppBar(),
+          homePageAppBar(
+            context,
+          ),
           const SizedBox(height: 25),
           const Row(
             children: [
@@ -68,11 +70,12 @@ class HomePageWidgets extends StatelessWidget {
   }
 
   // App bar for the home page from the custom App AppBar
-  Widget homePageAppBar() {
+  Widget homePageAppBar(BuildContext context) {
     return CustomAppBar(
       leadIcon: Image.asset(
         ImageRes.menu,
       ),
+      onLeadTapped: () => context.push('/profilePage'),
       title: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,6 +129,7 @@ class HomePageWidgets extends StatelessWidget {
           ),
         ),
       ),
+      onTrailingTapped: () => context.push('/myOrders'),
     );
   }
 }

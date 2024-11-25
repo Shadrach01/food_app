@@ -7,8 +7,11 @@ import 'package:food_app/features/edit_cart/view/edit_cart_page.dart';
 import 'package:food_app/features/food_details/view/food_details_page.dart';
 import 'package:food_app/features/food_page/view/food_page.dart';
 import 'package:food_app/features/home_page/view/home_page.dart';
+import 'package:food_app/features/menu_page/view/menu_page.dart';
+import 'package:food_app/features/my_order_page/view/my_orders_page.dart';
 import 'package:food_app/features/onboarding/view/onboarding_screen.dart';
 import 'package:food_app/features/payment_successful_page/view/payment_successful_page.dart';
+import 'package:food_app/features/personal_profile/view/personal_profile_page.dart';
 import 'package:food_app/features/search_page/view/search_page.dart';
 import 'package:food_app/features/track_order/view/track_order_page.dart';
 import 'package:go_router/go_router.dart';
@@ -37,7 +40,12 @@ final goRouterProvider = Provider<GoRouter>(
         GoRoute(
           path: '/homePage',
           name: RouteName.homePageRoute,
-          builder: (context, state) => const HomePage(),
+          builder: (context, state) => HomePage(),
+        ),
+        GoRoute(
+          path: '/profilePage',
+          name: RouteName.profileRoute,
+          builder: (context, state) => const MenuPage(),
         ),
         GoRoute(
           path: '/homeSearchPage',
@@ -78,6 +86,16 @@ final goRouterProvider = Provider<GoRouter>(
           path: '/trackOrder',
           name: RouteName.trackOrderRoute,
           builder: (context, state) => const TrackOrderPage(),
+        ),
+        GoRoute(
+          path: '/myOrders',
+          name: RouteName.myOrdersRoute,
+          builder: (context, state) => const MyOrdersPage(),
+        ),
+        GoRoute(
+          path: '/personalProfilePage',
+          name: RouteName.personalProfileRoute,
+          builder: (context, state) => const PersonalProfilePage(),
         ),
       ],
     );
