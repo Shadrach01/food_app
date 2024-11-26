@@ -13,6 +13,7 @@ class AppTextfield extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
   final bool readOnly;
+  final void Function()? onSuffixIconPressed;
 
   const AppTextfield({
     super.key,
@@ -26,26 +27,37 @@ class AppTextfield extends StatelessWidget {
     this.textInputAction,
     this.keyboardType,
     this.readOnly = false,
+    this.onSuffixIconPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppContainer(
-      containerColor: ColorRes.appKLightGrey,
+      containerColor: ColorRes.appKLightGrey.withOpacity(.4),
       child: TextFormField(
         controller: controller,
         onChanged: onChanged,
         obscureText: obScureText,
         validator: validator,
         decoration: InputDecoration(
-            border: InputBorder.none,
-            prefixIcon:
-                preffixIcon != null ? Icon(preffixIcon) : null,
-            suffixIcon:
-                surffixIcon != null ? Icon(surffixIcon) : null,
-            suffixIconColor: ColorRes.appKGrey,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 20)),
+          border: InputBorder.none,
+          isDense: true,
+          prefixIcon: preffixIcon != null ? Icon(preffixIcon) : null,
+          suffixIcon: surffixIcon != null
+              ? IconButton(
+                  icon: Icon(
+                    surffixIcon,
+                    color: ColorRes.appKGrey.withOpacity(.5),
+                  ),
+                  onPressed: onSuffixIconPressed,
+                )
+              : null,
+          suffixIconColor: ColorRes.appKGrey,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 15,
+          ),
+        ),
         textInputAction: textInputAction,
         keyboardType: keyboardType,
         readOnly: readOnly,

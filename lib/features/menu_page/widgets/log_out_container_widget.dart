@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/core/routes/go_router_provider.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
+import 'package:food_app/features/menu_page/controller/log_out_controller/log_out_controller.dart';
+import 'package:go_router/go_router.dart';
 import 'details_tile.dart';
 
 class LogOutContainerWidget extends StatelessWidget {
-  const LogOutContainerWidget({super.key});
+  final LogOutController _controller = LogOutController();
+
+  LogOutContainerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +26,10 @@ class LogOutContainerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           DetailsTile(
+            onTap: () {
+              _controller.handleLogOut();
+              context.go('/onboarding');
+            },
             leadIcon: Image.asset(
               ImageRes.logout,
               color: ColorRes.containerKColor,

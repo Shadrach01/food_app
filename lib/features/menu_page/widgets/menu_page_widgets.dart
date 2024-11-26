@@ -46,19 +46,19 @@ class MenuPageWidgets extends StatelessWidget {
                 ),
               ),
             ),
-            const Expanded(
+            Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox(height: 30),
-                    UserInfoRow(),
-                    SizedBox(height: 40),
-                    PersonalInfoTile(),
-                    SizedBox(height: 20),
-                    CartContainerWidgets(),
-                    SizedBox(height: 20),
-                    FaqsContainerWidgets(),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 30),
+                    const UserInfoRow(),
+                    const SizedBox(height: 40),
+                    const PersonalInfoTile(),
+                    const SizedBox(height: 20),
+                    const CartContainerWidgets(),
+                    const SizedBox(height: 20),
+                    const FaqsContainerWidgets(),
+                    const SizedBox(height: 20),
                     LogOutContainerWidget(),
                   ],
                 ),

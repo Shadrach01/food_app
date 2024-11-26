@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/routes/route_name.dart';
 import 'package:food_app/features/add_card/view/add_card_page.dart';
+import 'package:food_app/features/auth/auth_state_notifier/auth_state_notifier.dart';
 import 'package:food_app/features/auth/log_in/view/login_page.dart';
 import 'package:food_app/features/auth/signup/view/signup_page.dart';
 import 'package:food_app/features/edit_cart/view/edit_cart_page.dart';
@@ -18,10 +19,17 @@ import 'package:food_app/features/track_order/view/track_order_page.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/payment_method_page/view/payment_method.dart';
 
+// Provider for isLoggedIn state
+final isLoggedInProvider = Provider<bool>(
+  (ref) => ref.watch(authServiceProvider).isLoggedIn,
+);
+
 final goRouterProvider = Provider<GoRouter>(
   (ref) {
+    final isLoggedIn = ref.watch(isLoggedInProvider);
+
     return GoRouter(
-      initialLocation: '/homePage',
+      initialLocation: isLoggedIn ? '/homepage' : '/onboarding',
       routes: [
         GoRoute(
           path: '/onboarding',

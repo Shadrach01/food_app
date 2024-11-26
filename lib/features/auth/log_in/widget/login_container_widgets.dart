@@ -8,13 +8,30 @@ import 'package:food_app/features/auth/log_in/widget/other_login_means_widgets.d
 import 'package:go_router/go_router.dart';
 
 class LoginContainerWidgets extends StatefulWidget {
-  const LoginContainerWidgets({super.key});
+  final void Function() onTap;
+  final bool isLoading;
+  final TextEditingController? emailController;
+  final TextEditingController? passwordController;
+  final void Function(String)? onEmailChanged;
+  final void Function(String)? onPasswordChanged;
+
+  const LoginContainerWidgets({
+    super.key,
+    required this.onTap,
+    required this.isLoading,
+    this.emailController,
+    this.passwordController,
+    this.onEmailChanged,
+    this.onPasswordChanged,
+  });
 
   @override
-  State<LoginContainerWidgets> createState() => _LoginContainerWidgetsState();
+  State<LoginContainerWidgets> createState() =>
+      _LoginContainerWidgetsState();
 }
 
-class _LoginContainerWidgetsState extends State<LoginContainerWidgets> {
+class _LoginContainerWidgetsState
+    extends State<LoginContainerWidgets> {
   bool _value = false;
 
   Widget rememberMe() {
@@ -43,7 +60,7 @@ class _LoginContainerWidgetsState extends State<LoginContainerWidgets> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: MediaQuery.of(context).size.height * 1,
+      height: 800,
       decoration: const BoxDecoration(
         color: ColorRes.appKWhite,
         borderRadius: BorderRadius.vertical(
@@ -55,7 +72,12 @@ class _LoginContainerWidgetsState extends State<LoginContainerWidgets> {
         child: Column(
           children: [
             const SizedBox(height: 30),
-            const LogInTextfields(),
+            LogInTextfields(
+              emailController: widget.emailController,
+              passwordController: widget.passwordController,
+              onEmailChanged: widget.onEmailChanged,
+              onPasswordChanged: widget.onPasswordChanged,
+            ),
             const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,7 +93,10 @@ class _LoginContainerWidgetsState extends State<LoginContainerWidgets> {
               ],
             ),
             const SizedBox(height: 30),
-            const LoginButton(),
+            LoginButton(
+              isLoading: widget.isLoading,
+              onTap: widget.onTap,
+            ),
             const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

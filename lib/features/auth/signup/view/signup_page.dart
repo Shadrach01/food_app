@@ -30,7 +30,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
     final rePw = rPwController.text;
 
     if (pw != rePw) {
-      AppSnackBar.show(context, message: "Your passwords do not match");
+      AppSnackBar.show(context,
+          message: "Your passwords do not match");
       return;
     }
 
@@ -38,9 +39,9 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
       isLoading = true;
     });
 
-    await ref
-        .read(authServiceProvider)
-        .signUpWithEmailPassword(email, name, pw, context);
+    // await ref
+    //     .read(authServiceProvider)
+    //     .signUpWithEmailPassword(email, name, pw, context);
 
     setState(() {
       isLoading = false;
