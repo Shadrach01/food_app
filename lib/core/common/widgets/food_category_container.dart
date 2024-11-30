@@ -4,6 +4,7 @@ import 'package:food_app/core/utils/color_res.dart';
 class FoodCategoryContainer extends StatelessWidget {
   final String title;
   final Widget subTitle;
+  final String image;
   final void Function()? onTap;
 
   const FoodCategoryContainer({
@@ -11,6 +12,7 @@ class FoodCategoryContainer extends StatelessWidget {
     required this.title,
     required this.subTitle,
     this.onTap,
+    required this.image,
   });
 
   @override
@@ -38,7 +40,11 @@ class FoodCategoryContainer extends StatelessWidget {
             Container(
               height: 90,
               decoration: BoxDecoration(
-                color: ColorRes.appKGrey,
+                image: DecorationImage(
+                  image: AssetImage(image),
+                  fit: BoxFit.contain,
+                ),
+                // color: ColorRes.appKGrey,
                 borderRadius: BorderRadius.circular(20),
               ),
             ),

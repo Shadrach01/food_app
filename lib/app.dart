@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_app/core/routes/go_router_provider.dart';
-import 'package:food_app/features/home_page/view/home_page.dart';
+import 'core/routes/app_routes_go_router.dart';
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});

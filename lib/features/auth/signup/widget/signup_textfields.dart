@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/core/common/widgets/app_textfields.dart';
 
-class SignUpTextfields extends StatelessWidget {
-  final TextEditingController nameController;
-  final TextEditingController emailController;
-  final TextEditingController pwController;
-  final TextEditingController rPwController;
+class SignUpTextfields extends StatefulWidget {
+  final TextEditingController? nameController;
+  final TextEditingController? emailController;
+  final TextEditingController? pwController;
+  final TextEditingController? rPwController;
+  final void Function(String)? onNameChanged;
+  final void Function(String)? onEmailChanged;
+  final void Function(String)? onPasswordChanged;
+  final void Function(String)? onConfirmPasswordChanged;
+
   const SignUpTextfields({
     super.key,
-    required this.nameController,
-    required this.emailController,
-    required this.pwController,
-    required this.rPwController,
+    this.nameController,
+    this.emailController,
+    this.pwController,
+    this.rPwController,
+    this.onNameChanged,
+    this.onEmailChanged,
+    this.onPasswordChanged,
+    this.onConfirmPasswordChanged,
   });
+
+  @override
+  State<SignUpTextfields> createState() => _SignUpTextfieldsState();
+}
+
+class _SignUpTextfieldsState extends State<SignUpTextfields> {
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -23,35 +39,49 @@ class SignUpTextfields extends StatelessWidget {
         const Text("NAME"),
         const SizedBox(height: 5),
         AppTextfield(
-          controller: nameController,
+          controller: widget.nameController,
           hintText: "John Doe",
           keyboardType: TextInputType.name,
+          onChanged: widget.onNameChanged,
         ),
         const SizedBox(height: 30),
         const Text("EMAIL"),
         const SizedBox(height: 5),
         AppTextfield(
-          controller: emailController,
+          controller: widget.emailController,
           hintText: "example@gmail.com",
           keyboardType: TextInputType.emailAddress,
+          onChanged: widget.onEmailChanged,
         ),
         const SizedBox(height: 30),
         const Text("PASSWORD"),
         const SizedBox(height: 5),
         AppTextfield(
-          controller: pwController,
+          controller: widget.pwController,
           hintText: "Password here",
           keyboardType: TextInputType.visiblePassword,
           surffixIcon: Icons.visibility_rounded,
+          onChanged: widget.onPasswordChanged,
+          onSuffixIconPressed: () {
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          },
         ),
         const SizedBox(height: 30),
         const Text("RE-TYPE PASSWORD"),
         const SizedBox(height: 5),
         AppTextfield(
-          controller: rPwController,
+          controller: widget.rPwController,
           hintText: "Re-Type Password here",
           keyboardType: TextInputType.visiblePassword,
           surffixIcon: Icons.visibility_rounded,
+          onChanged: widget.onConfirmPasswordChanged,
+          onSuffixIconPressed: () {
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          },
         ),
       ],
     );

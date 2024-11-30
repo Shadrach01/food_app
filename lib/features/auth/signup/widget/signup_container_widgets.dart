@@ -4,11 +4,15 @@ import 'package:food_app/features/auth/signup/widget/signup_button.dart';
 import 'package:food_app/features/auth/signup/widget/signup_textfields.dart';
 
 class SignUpContainerWidgets extends StatelessWidget {
-
   final TextEditingController nameController;
   final TextEditingController emailController;
   final TextEditingController pwController;
   final TextEditingController rPwController;
+
+  final void Function(String)? onNameChanged;
+  final void Function(String)? onEmailChanged;
+  final void Function(String)? onPasswordChanged;
+  final void Function(String)? onConfirmPasswordChanged;
   final void Function()? onSignUp;
 
   final bool isLoading;
@@ -21,6 +25,10 @@ class SignUpContainerWidgets extends StatelessWidget {
     required this.pwController,
     required this.rPwController,
     required this.isLoading,
+    this.onNameChanged,
+    this.onEmailChanged,
+    this.onPasswordChanged,
+    this.onConfirmPasswordChanged,
   });
 
   @override
@@ -43,6 +51,10 @@ class SignUpContainerWidgets extends StatelessWidget {
               emailController: emailController,
               pwController: pwController,
               rPwController: rPwController,
+              onNameChanged: onNameChanged,
+              onEmailChanged: onEmailChanged,
+              onPasswordChanged: onPasswordChanged,
+              onConfirmPasswordChanged: onConfirmPasswordChanged,
             ),
             const SizedBox(height: 5),
             const SizedBox(height: 40),
@@ -56,5 +68,3 @@ class SignUpContainerWidgets extends StatelessWidget {
     );
   }
 }
-
-

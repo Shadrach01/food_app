@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/widgets/app_container.dart';
+import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/features/onboarding/provider/dot_index_provider.dart';
 import 'package:go_router/go_router.dart';
@@ -37,7 +38,7 @@ class OnboardingButtons extends ConsumerWidget {
                   .read(indexDotProvider.notifier)
                   .changeIndex(index + 1);
             } else {
-              context.go('/login');
+              context.go(AppRouteNames.loginRoute);
             }
           },
           child: AppContainer(
@@ -55,12 +56,12 @@ class OnboardingButtons extends ConsumerWidget {
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {
-            context.go('/login');
+            context.go(AppRouteNames.loginRoute);
           },
-          child: AppContainer(
+          child: const AppContainer(
             height: 50,
             containerColor: ColorRes.appKTransparent,
-            child: const Text(
+            child: Text(
               "S K I P",
               style: TextStyle(
                 color: ColorRes.appKGrey,

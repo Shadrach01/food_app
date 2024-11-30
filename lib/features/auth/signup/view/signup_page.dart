@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_app/core/common/app_snackbar.dart';
-
+import 'package:food_app/core/common/widgets/custom_app_bar.dart';
+import 'package:food_app/core/global_loader/global_loader.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/text_res.dart';
-import 'package:food_app/features/auth/repository/auth_service.dart';
+import 'package:food_app/features/auth/signup/controller/sign_up_controller.dart';
 import 'package:food_app/features/auth/signup/widget/signup_container_widgets.dart';
-import 'package:go_router/go_router.dart';
+
+import '../provider/sign_up_notifier.dart';
 
 class SignUpPage extends ConsumerStatefulWidget {
   const SignUpPage({super.key});
@@ -16,40 +17,17 @@ class SignUpPage extends ConsumerStatefulWidget {
 }
 
 class _SignUpPageState extends ConsumerState<SignUpPage> {
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final pwController = TextEditingController();
-  final rPwController = TextEditingController();
+  late SignUpController _controller;
 
-  bool isLoading = false;
-
-  onSignUp() async {
-    final name = nameController.text;
-    final email = emailController.text;
-    final pw = pwController.text;
-    final rePw = rPwController.text;
-
-    if (pw != rePw) {
-      AppSnackBar.show(context,
-          message: "Your passwords do not match");
-      return;
-    }
-
-    setState(() {
-      isLoading = true;
-    });
-
-    // await ref
-    //     .read(authServiceProvider)
-    //     .signUpWithEmailPassword(email, name, pw, context);
-
-    setState(() {
-      isLoading = false;
-    });
+  @override
+  void didChangeDependencies() {
+    _controller = SignUpController();
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    final loader = ref.watch(appLoaderProvider);
     return Scaffold(
       backgroundColor: ColorRes.appKDarkBlack,
       resizeToAvoidBottomInset: true,
@@ -69,19 +47,9 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                       const SizedBox(height: 30),
                       Padding(
                         padding: const EdgeInsets.only(left: 15.0),
-                        child: GestureDetector(
-                          onTap: () => context.pop(),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Container(
-                                height: 50,
-                                width: 50,
-                                color: ColorRes.appKWhite,
-                                child: const Icon(
-                                  Icons.arrow_back_ios,
-                                  size: 18,
-                                )),
-                          ),
+                        child: CustomAppBar(
+                          leadingContainerColor:
+                              ColorRes.appKWhite.withOpacity(.8),
                         ),
                       ),
                       const SizedBox(height: 30),
@@ -108,14 +76,28 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                       const SizedBox(height: 50),
                       Expanded(
                         child: SignUpContainerWidgets(
-                          nameController: nameController,
-                          emailController: emailController,
-                          pwController: pwController,
-                          rPwController: rPwController,
-                          isLoading: isLoading,
-                          onSignUp: () async {
-                            await onSignUp();
-                          },
+                          nameController: _controller.nameController,
+                          emailController:
+                              _controller.emailController,
+                          pwController:
+                              _controller.passwordController,
+                          rPwController:
+                              _controller.confirmPasswordController,
+                          onNameChanged: (value) => ref
+                              .read(signUpNotifierProvider.notifier)
+                              .onNameChanged(value),
+                          onEmailChanged: (value) => ref
+                              .read(signUpNotifierProvider.notifier)
+                              .onEmailChanged(value),
+                          onPasswordChanged: (value) => ref
+                              .read(signUpNotifierProvider.notifier)
+                              .onPasswordChanged(value),
+                          onConfirmPasswordChanged: (value) => ref
+                              .read(signUpNotifierProvider.notifier)
+                              .confirmPasswordChanged(value),
+                          isLoading: loader,
+                          onSignUp: () =>
+                              _controller.handleSignUp(context, ref),
                         ),
                       ),
                     ],

@@ -21,6 +21,12 @@ class ImageRes {
   static const String masterCard = '$_imageBase/master_card_logo.png';
   static const String paymentSuccessful =
       '$_imageBase/payment_successful.png';
+  static const String pizza = '$_imageBase/pizza.png';
+  static const String hotDog = '$_imageBase/hot_dog.png';
+  static const String burger = '$_imageBase/burger.png';
+  static const String shawarma = '$_imageBase/sharwama.png';
+  static const String friedChicken = '$_imageBase/fried_chicken.png';
+  static const String milkshake = '$_imageBase/milkshake.png';
 
   // For each icons
   static const String _iconBase = "assets/icons";

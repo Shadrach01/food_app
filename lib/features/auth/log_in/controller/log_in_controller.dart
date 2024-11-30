@@ -11,16 +11,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/app_snackbar.dart';
 import 'package:food_app/core/global_loader/global_loader.dart';
+import 'package:food_app/core/routes/app_route_names.dart';
+import 'package:food_app/core/routes/auth_routes/auth_enum_class.dart';
 import 'package:food_app/features/auth/log_in/provider/log_in_notifier.dart';
 import 'package:food_app/features/auth/log_in/repo/log_in_repo.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../../../core/routes/auth_routes/provider/user_auth_provider.dart';
 
 class LogInController {
   LogInController();
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  final supabaseClient = Supabase.instance.client;
 
   // Handle the Login
   Future<void> handleLogIn(
@@ -58,9 +64,33 @@ class LogInController {
       // Check if user exist in the database
       if (credential.user == null) {
         AppSnackBar.show(context, message: "User not found");
+        // final userIsChef =
+        //     await checkIfUserIsChef(credential.user!.id);
+        // final userAuth = userIsChef ? UserAuth.chef : UserAuth.user;
+        //
+        // // Update state and persist role
+        // ref.read(userAuthProvider.notifier).setUserAuth(userAuth);
         return;
       }
-      context.go('/homePage');
+
+      if (credential.session != null) {
+        final userId = credential.user!.id;
+
+        // Retrieve user details from 'users table
+        final userDetails = await supabaseClient
+            .from('users')
+            .select('is_chef')
+            .eq('uid', userId)
+            .single();
+
+        final isChef = userDetails['is_chef'];
+
+        if (isChef) {
+          context.go(AppRouteNames.dashBoardRoute);
+        } else {
+          context.go(AppRouteNames.homePageRoute);
+        }
+      }
     } on AuthException catch (e) {
       AppSnackBar.show(context, message: e.message);
 
@@ -74,4 +104,22 @@ class LogInController {
       ref.read(appLoaderProvider.notifier).setLoaderValue(false);
     }
   }
+
+// Future<bool> checkIfUserIsChef(String userId) async {
+//   try {
+//     // Perform the query awa await the response
+//     final response = await supabaseClient
+//         .from('users')
+//         .select('is_chef')
+//         .eq('uid', userId)
+//         .single();
+//
+//     // Access the data
+//
+//     return response['is_chef'] ?? false;
+//   } catch (e) {
+//     print("Error checking if user is chef $e");
+//     return false;
+//   }
+// }
 }
