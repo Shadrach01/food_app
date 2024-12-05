@@ -40,6 +40,11 @@ class AppTextfield extends StatelessWidget {
         obscureText: obScureText,
         validator: validator,
         decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: TextStyle(
+            color: ColorRes.appKGrey.withOpacity(.5),
+            fontSize: 15,
+          ),
           border: InputBorder.none,
           isDense: true,
           prefixIcon: preffixIcon != null ? Icon(preffixIcon) : null,

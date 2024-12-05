@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/core/routes/app_route_names.dart';
+import 'package:food_app/core/common/widgets/details_tile.dart';
 import 'package:food_app/core/utils/color_res.dart';
-import 'package:food_app/core/utils/image_res.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../core/common/widgets/details_tile.dart';
-
-class PersonalInfoTile extends StatelessWidget {
-  const PersonalInfoTile({super.key});
+class WithdrawalHistoryTile extends StatelessWidget {
+  const WithdrawalHistoryTile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,26 +15,32 @@ class PersonalInfoTile extends StatelessWidget {
         color: ColorRes.appKLightGrey.withOpacity(.4),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           DetailsTile(
-            leadIcon: Image.asset(
-              ImageRes.user,
+            leadIcon: Icon(
+              Icons.receipt,
               color: ColorRes.containerKColor,
             ),
-            title: "Personal Info",
-            onTap: () =>
-                context.push(AppRouteNames.personalProfileRoute),
+            title: "Withdrawal History",
           ),
-          const SizedBox(height: 8),
-          const DetailsTile(
+          SizedBox(height: 8),
+          DetailsTile(
             leadIcon: Icon(
-              Icons.location_on,
+              Icons.receipt_long,
               color: Colors.blue,
             ),
-            title: "Address",
+            title: "Number of Orders",
+            trailingIcon: Text(
+              "29K",
+              style: TextStyle(
+                fontSize: 20,
+                color: ColorRes.appKGrey,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ],
       ),

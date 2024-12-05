@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
 
-import 'details_tile.dart';
+import '../../../../core/common/widgets/details_tile.dart';
 
 class FaqsContainerWidgets extends StatelessWidget {
   const FaqsContainerWidgets({super.key});

@@ -3,12 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/routes/auth_routes/auth_enum_class.dart';
 import 'package:food_app/core/routes/auth_routes/auth_state_notifier/auth_state_notifier.dart';
-import 'package:food_app/core/routes/auth_routes/provider/is_loading_provider.dart';
 import 'package:food_app/features/auth/chef_or_user/view/chef_or_user.dart';
 import 'package:food_app/features/auth/log_in/view/login_page.dart';
 import 'package:food_app/features/auth/please_wait_page/please_wait_page.dart';
 import 'package:food_app/features/auth/signup/view/signup_page.dart';
-import 'package:food_app/features/is_chef/home_page/view/chef_dash_board.dart';
+import 'package:food_app/features/is_chef/add_new_food/view/add_new_food_page.dart';
+import 'package:food_app/features/is_chef/chef_food_list/view/chef_food_list_page.dart';
+import 'package:food_app/features/is_chef/chef_profile/view/chef_profile_page.dart';
 import 'package:food_app/features/is_user/edit_cart/view/edit_cart_page.dart';
 import 'package:food_app/features/is_user/my_order_page/view/my_orders_page.dart';
 import 'package:food_app/features/onboarding/view/onboarding_screen.dart';
@@ -24,6 +25,7 @@ import '../../../features/is_user/payment_successful_page/view/payment_successfu
 import '../../../features/is_user/personal_profile/view/personal_profile_page.dart';
 import '../../../features/is_user/search_page/view/search_page.dart';
 import '../../../features/is_user/track_order/view/track_order_page.dart';
+import '../../features/is_chef/chef_home_page/view/chef_dash_board.dart';
 import 'auth_routes/provider/user_auth_provider.dart';
 
 final goRouterProvider = Provider<GoRouter>(
@@ -155,6 +157,21 @@ final goRouterProvider = Provider<GoRouter>(
           path: '/chefDashBoard',
           name: AppRouteNames.dashBoardRoute,
           builder: (context, state) => const ChefDashBoard(),
+        ),
+        GoRoute(
+          path: '/chefProfilePage',
+          name: AppRouteNames.chefProfileRoute,
+          builder: (context, state) => const ChefProfilePage(),
+        ),
+        GoRoute(
+          path: '/chefFoodListPage',
+          name: AppRouteNames.chefFoodListRoute,
+          builder: (context, state) => const ChefFoodListPage(),
+        ),
+        GoRoute(
+          path: '/chefAddNewFoodPage',
+          name: AppRouteNames.chefAddNewFoodRoute,
+          builder: (context, state) => const AddNewFoodPage(),
         ),
       ],
     );

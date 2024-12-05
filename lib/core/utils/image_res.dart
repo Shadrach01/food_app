@@ -63,4 +63,6 @@ class ImageRes {
   static const String user = '$_iconBase/User.png';
   static const String vector = '$_iconBase/Vector.png';
   static const String watch = '$_iconBase/Watch.png';
+  static const String chefPageHomeIcon =
+      '$_iconBase/chef_page_home_icon.png';
 }

@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
 import 'package:go_router/go_router.dart';
 
-import '../controller/log_out_controller/log_out_controller.dart';
 import '../../../../core/common/widgets/details_tile.dart';
 
-class LogOutContainerWidget extends ConsumerWidget {
-  final LogOutController _controller = LogOutController();
-
-  LogOutContainerWidget({super.key});
+class ChefPersonalInfoTile extends StatelessWidget {
+  const ChefPersonalInfoTile({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      height: 80,
+      height: 150,
       width: double.infinity,
       decoration: BoxDecoration(
         color: ColorRes.appKLightGrey.withOpacity(.4),
@@ -28,15 +24,19 @@ class LogOutContainerWidget extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           DetailsTile(
-            onTap: () {
-              _controller.handleLogOut(ref);
-              context.go(AppRouteNames.onboardingRoute);
-            },
             leadIcon: Image.asset(
-              ImageRes.logout,
+              ImageRes.user,
               color: ColorRes.containerKColor,
             ),
-            title: "Log Out",
+            title: "Personal Info",
+          ),
+          const SizedBox(height: 8),
+          const DetailsTile(
+            leadIcon: Icon(
+              Icons.settings,
+              color: Colors.blue,
+            ),
+            title: "Settings",
           ),
         ],
       ),

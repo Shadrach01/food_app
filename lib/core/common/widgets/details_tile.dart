@@ -5,12 +5,14 @@ class DetailsTile extends StatelessWidget {
   final String title;
   final Widget? leadIcon;
   final void Function()? onTap;
+  final Widget? trailingIcon;
 
   const DetailsTile({
     super.key,
     this.title = '',
     this.leadIcon,
     this.onTap,
+    this.trailingIcon,
   });
 
   @override
@@ -34,10 +36,11 @@ class DetailsTile extends StatelessWidget {
           fontSize: 19,
         ),
       ),
-      trailing: const Icon(
-        Icons.arrow_forward_ios,
-        size: 17,
-      ),
+      trailing: trailingIcon ??
+          const Icon(
+            Icons.arrow_forward_ios,
+            size: 17,
+          ),
     );
   }
 }
