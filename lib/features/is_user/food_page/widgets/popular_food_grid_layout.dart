@@ -12,13 +12,13 @@ class PopularFoodGridLayout extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final text = ref.watch(selectedFoodProvider)!;
+    // final text = ref.watch(selectedFoodProvider)!;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Popular ${text.title!}",
+          "Popular food}",
           style: const TextStyle(
             fontSize: 20,
             color: ColorRes.appKBlack,
@@ -48,11 +48,11 @@ class PopularFoodGridLayout extends ConsumerWidget {
   }
 
   Widget foodTypeContainer(BuildContext context, WidgetRef ref) {
-    final foodDetails = ref.watch(selectedFoodProvider)!;
+    // final foodDetails = ref.watch(selectedFoodProvider)!;
     return GestureDetector(
       onTap: () => context.push('/foodDetails'),
       child: FoodCategoryContainer(
-        image: foodDetails.image!,
+        image: ImageRes.user,
         title: "Pansi Restaurant",
         subTitle: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,7 +69,7 @@ class PopularFoodGridLayout extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$${foodDetails.price!}",
+                  "\$50",
                   style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,

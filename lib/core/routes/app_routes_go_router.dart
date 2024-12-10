@@ -10,6 +10,8 @@ import 'package:food_app/features/auth/signup/view/signup_page.dart';
 import 'package:food_app/features/is_chef/add_new_food/view/add_new_food_page.dart';
 import 'package:food_app/features/is_chef/chef_food_list/view/chef_food_list_page.dart';
 import 'package:food_app/features/is_chef/chef_profile/view/chef_profile_page.dart';
+import 'package:food_app/features/is_chef/notifications/view/notifications_page.dart';
+import 'package:food_app/features/is_chef/ordered_food_details/view/ordered_food_details.dart';
 import 'package:food_app/features/is_user/edit_cart/view/edit_cart_page.dart';
 import 'package:food_app/features/is_user/my_order_page/view/my_orders_page.dart';
 import 'package:food_app/features/onboarding/view/onboarding_screen.dart';
@@ -172,6 +174,16 @@ final goRouterProvider = Provider<GoRouter>(
           path: '/chefAddNewFoodPage',
           name: AppRouteNames.chefAddNewFoodRoute,
           builder: (context, state) => const AddNewFoodPage(),
+        ),
+        GoRoute(
+          path: '/orderedFoodDetailsPage',
+          name: AppRouteNames.orderedFoodDetailsRoute,
+          builder: (context, state) => const OrderedFoodDetails(),
+        ),
+        GoRoute(
+          path: '/notificationsPage',
+          name: AppRouteNames.notificationsRoute,
+          builder: (context, state) => const NotificationsPage(),
         ),
       ],
     );

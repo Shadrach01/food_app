@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/core/common/widgets/custom_app_bar.dart';
+import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/utils/color_res.dart';
+import 'package:go_router/go_router.dart';
 
 class EachTimeFoodDetails extends StatelessWidget {
   final String time;
@@ -87,15 +90,19 @@ class EachTimeFoodDetails extends StatelessWidget {
           ],
         ),
         const SizedBox(width: 17),
-        const Column(
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              Icons.more_horiz,
-              color: ColorRes.appKDarkBlack,
+            GestureDetector(
+              onTap: () =>
+                  context.push(AppRouteNames.orderedFoodDetailsRoute),
+              child: const Icon(
+                Icons.more_horiz,
+                color: ColorRes.appKDarkBlack,
+              ),
             ),
-            SizedBox(height: 15),
-            Text(
+            const SizedBox(height: 15),
+            const Text(
               "\$39",
               style: TextStyle(
                 color: ColorRes.appKDarkBlack,
@@ -103,8 +110,8 @@ class EachTimeFoodDetails extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               "Pick up",
               style: TextStyle(
                 color: ColorRes.appKGrey,

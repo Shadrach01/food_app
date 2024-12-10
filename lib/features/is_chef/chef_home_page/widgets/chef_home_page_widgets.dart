@@ -3,7 +3,6 @@ import 'package:food_app/core/common/widgets/custom_app_bar.dart';
 import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
-import 'package:food_app/features/is_chef/chef_home_page/widgets/bottom_nav_bar.dart';
 import 'package:food_app/features/is_chef/chef_home_page/widgets/orders_containers.dart';
 import 'package:food_app/features/is_chef/chef_home_page/widgets/popular_items.dart';
 import 'package:food_app/features/is_chef/chef_home_page/widgets/reviews_container.dart';

@@ -32,7 +32,7 @@ class ChefFoodListWidgets extends StatelessWidget {
           children: [
             CustomAppBar(
               onLeadTapped: () =>
-                  context.push(AppRouteNames.dashBoardRoute),
+                  context.go(AppRouteNames.dashBoardRoute),
               title: const Text(
                 "My Food List",
                 style: TextStyle(

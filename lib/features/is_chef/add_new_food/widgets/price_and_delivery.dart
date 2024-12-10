@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/widgets/app_textfields.dart';
 import 'package:food_app/core/utils/color_res.dart';
+import 'package:food_app/features/is_chef/add_new_food/controller/add_new_food_controller.dart';
+import 'package:food_app/features/is_chef/add_new_food/provider/add_new_food_notifier.dart';
 
-class PriceAndDelivery extends StatefulWidget {
-  const PriceAndDelivery({super.key});
+class PriceAndDelivery extends ConsumerWidget {
+  PriceAndDelivery({super.key});
 
-  @override
-  State<PriceAndDelivery> createState() => _PriceAndDeliveryState();
-}
-
-class _PriceAndDeliveryState extends State<PriceAndDelivery> {
-  String? selectedOption; // Stores the currently selected option
+  final controller = AddNewFoodController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedOption =
+        ref.watch(addNewFoodNotifierProvider).pickupOrDelivery;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -39,19 +39,64 @@ class _PriceAndDeliveryState extends State<PriceAndDelivery> {
                   width: 2,
                 ),
               ),
-              child: const AppTextfield(),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      "\$",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: ColorRes.appKGrey,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: AppTextfield(
+                        controller: controller.foodPriceController,
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          print("onChanged value called $value");
+
+                          ref
+                              .read(
+                                  addNewFoodNotifierProvider.notifier)
+                              .onPriceSelected(value);
+
+                          print("Updated price: $value");
+                        }),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(width: 15),
-            isCheckSelected("Pick up"),
+            isCheckSelected(
+              ref,
+              controller,
+              "Pick up",
+              selectedOption,
+            ),
             const SizedBox(width: 10),
-            isCheckSelected("Delivery"),
+            isCheckSelected(
+              ref,
+              controller,
+              "Delivery",
+              selectedOption,
+            ),
           ],
         ),
       ],
     );
   }
 
-  Widget isCheckSelected(String text) {
+  Widget isCheckSelected(
+    WidgetRef ref,
+    AddNewFoodController controller,
+    String text,
+    String? selectedOption,
+  ) {
     return Row(
       children: [
         Transform.scale(
@@ -72,15 +117,9 @@ class _PriceAndDeliveryState extends State<PriceAndDelivery> {
                     width: 2,
                   ),
             onChanged: (value) {
-              setState(
-                () {
-                  if (value == true) {
-                    selectedOption = text; // Set the selected option
-                  } else {
-                    selectedOption = null; // Deselect if unchecked
-                  }
-                },
-              );
+              if (value == true) {
+                controller.updatePickUpOrDelivery(ref, text);
+              }
             },
           ),
         ),

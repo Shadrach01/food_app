@@ -36,7 +36,8 @@ class FoodPageAppBar extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              ref.watch(selectedFoodProvider)!.title!,
+              "Title",
+              // ref.watch(selectedFoodProvider)!.title!,
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 14,

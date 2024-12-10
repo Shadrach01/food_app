@@ -24,10 +24,10 @@ class FoodImageContainer extends ConsumerWidget {
               width: MediaQuery.of(context).size.width,
               height: 300,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                      ref.watch(selectedFoodProvider)!.image!),
-                ),
+                // image: DecorationImage(
+                //   image: AssetImage(
+                //       ref.watch(selectedFoodProvider)!.image!),
+                // ),
                 color: ColorRes.containerKColor.withOpacity(.7),
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(30),

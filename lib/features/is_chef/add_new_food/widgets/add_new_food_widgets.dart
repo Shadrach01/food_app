@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/widgets/app_container.dart';
 import 'package:food_app/core/common/widgets/app_textfields.dart';
 import 'package:food_app/core/common/widgets/custom_app_bar.dart';
+import 'package:food_app/core/global_loader/global_loader.dart';
 import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/utils/color_res.dart';
+import 'package:food_app/features/is_chef/add_new_food/controller/add_new_food_controller.dart';
+import 'package:food_app/features/is_chef/add_new_food/provider/add_new_food_notifier.dart';
 import 'package:food_app/features/is_chef/add_new_food/widgets/ingredients_widget.dart';
 import 'package:food_app/features/is_chef/add_new_food/widgets/price_and_delivery.dart';
 import 'package:food_app/features/is_chef/add_new_food/widgets/upload_food_image_widgets.dart';
 import 'package:go_router/go_router.dart';
 
-class AddNewFoodWidgets extends StatelessWidget {
-  const AddNewFoodWidgets({super.key});
+class AddNewFoodWidgets extends ConsumerWidget {
+  final controller = AddNewFoodController();
+
+  AddNewFoodWidgets({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isLoading = ref.watch(appLoaderProvider);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(
@@ -26,7 +33,7 @@ class AddNewFoodWidgets extends StatelessWidget {
           children: [
             CustomAppBar(
               onLeadTapped: () =>
-                  context.push(AppRouteNames.dashBoardRoute),
+                  context.go(AppRouteNames.dashBoardRoute),
               title: const Text(
                 "Add New Items",
                 style: TextStyle(
@@ -48,11 +55,11 @@ class AddNewFoodWidgets extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
-                    const Column(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "ITEM NAME",
                           style: TextStyle(
                             fontSize: 16,
@@ -60,27 +67,45 @@ class AddNewFoodWidgets extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         AppTextfield(
                           hintText: "Chicken Biriyani",
+                          controller: controller.foodNameController,
+                          onChanged: (value) => ref
+                              .read(
+                                  addNewFoodNotifierProvider.notifier)
+                              .onFoodNameChanged(value),
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     const UploadFoodImageWidgets(),
                     const SizedBox(height: 20),
-                    const PriceAndDelivery(),
+                    PriceAndDelivery(),
                     const SizedBox(height: 20),
                     IngredientsWidget(),
                     const SizedBox(height: 20),
-                    const AppContainer(
-                        child: Text(
-                      "SAVE CHANGES",
-                      style: TextStyle(
-                        color: ColorRes.appKWhite,
-                        fontSize: 20,
+                    GestureDetector(
+                      onTap: () =>
+                          controller.addFoodToDatabase(context, ref),
+                      child: AppContainer(
+                        child: isLoading
+                            ? const SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  color: ColorRes.appKWhite,
+                                ),
+                              )
+                            : const Text(
+                                "SAVE CHANGES",
+                                style: TextStyle(
+                                  color: ColorRes.appKWhite,
+                                  fontSize: 20,
+                                ),
+                              ),
                       ),
-                    ))
+                    )
                   ],
                 ),
               ),

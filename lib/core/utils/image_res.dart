@@ -65,4 +65,16 @@ class ImageRes {
   static const String watch = '$_iconBase/Watch.png';
   static const String chefPageHomeIcon =
       '$_iconBase/chef_page_home_icon.png';
+  static const String apple = '$_iconBase/apple.png';
+  static const String avocado = '$_iconBase/avocado.png';
+  static const String blueberry = '$_iconBase/blueberry.png';
+  static const String chicken = '$_iconBase/chicken.png';
+  static const String garlic = '$_iconBase/garlic.png';
+  static const String ginger = '$_iconBase/ginger.png';
+  static const String onion = '$_iconBase/onion.png';
+  static const String orange = '$_iconBase/orange.png';
+  static const String peppers = '$_iconBase/peppers.png';
+  static const String salt = '$_iconBase/salt.png';
+  static const String broccoli = '$_iconBase/broccoli.png';
+  static const String walnut = '$_iconBase/walnut.png';
 }

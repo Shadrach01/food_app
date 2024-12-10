@@ -4,6 +4,7 @@ import 'package:food_app/core/utils/image_res.dart';
 import 'package:food_app/features/is_chef/add_new_food/view/add_new_food_page.dart';
 import 'package:food_app/features/is_chef/chef_food_list/view/chef_food_list_page.dart';
 import 'package:food_app/features/is_chef/chef_home_page/widgets/chef_home_page_widgets.dart';
+import 'package:food_app/features/is_chef/notifications/view/notifications_page.dart';
 
 class ChefDashBoard extends StatefulWidget {
   const ChefDashBoard({super.key});
@@ -20,8 +21,7 @@ class _ChefDashBoardState extends State<ChefDashBoard> {
     ChefHomePageWidgets(),
     ChefFoodListPage(),
     AddNewFoodPage(),
-    Text(
-        'WHOD;VZHVOJNZGN;DUDVHILUISDGHKVIKGKSYGVKYSGKVYGSKGVKHGHSVHH VBHMVMSHV'),
+    NotificationsPage(),
     Text('WHOD;VZHVOJNZGN;GVOIFJLOFGGHL'),
   ];
 
@@ -82,7 +82,7 @@ class _ChefDashBoardState extends State<ChefDashBoard> {
           const BottomNavigationBarItem(
             icon: ImageIcon(
               AssetImage(
-                ImageRes.chefPageHomeIcon,
+                ImageRes.bell,
               ),
               size: 30,
             ),
@@ -91,7 +91,7 @@ class _ChefDashBoardState extends State<ChefDashBoard> {
           const BottomNavigationBarItem(
             icon: ImageIcon(
               AssetImage(
-                ImageRes.chefPageHomeIcon,
+                ImageRes.user,
               ),
               size: 30,
             ),

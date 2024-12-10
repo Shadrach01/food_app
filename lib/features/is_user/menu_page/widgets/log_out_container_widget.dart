@@ -5,7 +5,7 @@ import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
 import 'package:go_router/go_router.dart';
 
-import '../controller/log_out_controller/log_out_controller.dart';
+import '../../../auth/log_out_controller/log_out_controller.dart';
 import '../../../../core/common/widgets/details_tile.dart';
 
 class LogOutContainerWidget extends ConsumerWidget {

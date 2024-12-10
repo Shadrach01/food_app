@@ -13,6 +13,9 @@ class AppRouteNames {
   static const String chefProfileRoute = '/chefProfilePage';
   static const String chefFoodListRoute = '/chefFoodListPage';
   static const String chefAddNewFoodRoute = '/chefAddNewFoodPage';
+  static const String orderedFoodDetailsRoute =
+      '/orderedFoodDetailsPage';
+  static const String notificationsRoute = '/notificationsPage';
 
   // Usr Routes
   static const String homePageRoute = '/userHomePage';
