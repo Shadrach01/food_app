@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/widgets/custom_app_bar.dart';
 import 'package:food_app/core/global_loader/global_loader.dart';
+import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/text_res.dart';
 import 'package:food_app/features/auth/signup/controller/sign_up_controller.dart';
-import 'package:food_app/features/auth/signup/widget/signup_container_widgets.dart';
+import 'package:go_router/go_router.dart';
 
-import '../provider/sign_up_notifier.dart';
+import '../../provider/sign_up_notifier.dart';
+import '../widget/chef_signup_container_widgets.dart';
 
-class SignUpPage extends ConsumerStatefulWidget {
-  const SignUpPage({super.key});
+class ChefSignUpPage extends ConsumerStatefulWidget {
+  const ChefSignUpPage({super.key});
 
   @override
-  ConsumerState<SignUpPage> createState() => _SignUpPageState();
+  ConsumerState<ChefSignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends ConsumerState<SignUpPage> {
+class _SignUpPageState extends ConsumerState<ChefSignUpPage> {
   late SignUpController _controller;
 
   @override
@@ -42,14 +44,24 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                 child: IntrinsicHeight(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const SizedBox(height: 30),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: CustomAppBar(
-                          leadingContainerColor:
-                              ColorRes.appKWhite.withOpacity(.8),
+                        padding: const EdgeInsets.only(
+                          right: 30,
+                        ),
+                        child: GestureDetector(
+                          onTap: () =>
+                              context.push(AppRouteNames.loginRoute),
+                          child: const Text(
+                            "Log In",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: ColorRes.containerKColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 30),
@@ -75,8 +87,12 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                       ),
                       const SizedBox(height: 50),
                       Expanded(
-                        child: SignUpContainerWidgets(
+                        child: ChefSignUpContainerWidgets(
                           nameController: _controller.nameController,
+                          restaurantNameController:
+                              _controller.restaurantNameController,
+                          restaurantAddressController:
+                              _controller.restaurantAddressController,
                           emailController:
                               _controller.emailController,
                           pwController:
@@ -89,6 +105,12 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                           onEmailChanged: (value) => ref
                               .read(signUpNotifierProvider.notifier)
                               .onEmailChanged(value),
+                          onRestaurantNameChanged: (value) => ref
+                              .read(signUpNotifierProvider.notifier)
+                              .onRestaurantNameChanged(value),
+                          onRestaurantAddressChanged: (value) => ref
+                              .read(signUpNotifierProvider.notifier)
+                              .onRestaurantAddressChanged(value),
                           onPasswordChanged: (value) => ref
                               .read(signUpNotifierProvider.notifier)
                               .onPasswordChanged(value),
@@ -96,8 +118,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                               .read(signUpNotifierProvider.notifier)
                               .confirmPasswordChanged(value),
                           isLoading: loader,
-                          onSignUp: () =>
-                              _controller.handleSignUp(context, ref),
+                          onSignUp: () => _controller
+                              .handleChefSignUp(context, ref),
                         ),
                       ),
                     ],

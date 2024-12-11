@@ -6,7 +6,8 @@ import 'package:food_app/core/routes/auth_routes/auth_state_notifier/auth_state_
 import 'package:food_app/features/auth/chef_or_user/view/chef_or_user.dart';
 import 'package:food_app/features/auth/log_in/view/login_page.dart';
 import 'package:food_app/features/auth/please_wait_page/please_wait_page.dart';
-import 'package:food_app/features/auth/signup/view/signup_page.dart';
+import 'package:food_app/features/auth/signup/chef/view/chef_signup_page.dart';
+import 'package:food_app/features/auth/signup/user/view/user_signup_page.dart';
 import 'package:food_app/features/is_chef/add_new_food/view/add_new_food_page.dart';
 import 'package:food_app/features/is_chef/chef_food_list/view/chef_food_list_page.dart';
 import 'package:food_app/features/is_chef/chef_profile/view/chef_profile_page.dart';
@@ -57,8 +58,11 @@ final goRouterProvider = Provider<GoRouter>(
 
          */
         GoRoute(
-          path: '/onboarding',
-          name: AppRouteNames.onboardingRoute,
+          path: AppRouteNames.chefSignUpRoute,
+          builder: (context, state) => const ChefSignUpPage(),
+        ),
+        GoRoute(
+          path: AppRouteNames.onboardingRoute,
           builder: (context, state) => const OnboardingScreen(),
         ),
         GoRoute(
@@ -72,7 +76,7 @@ final goRouterProvider = Provider<GoRouter>(
         ),
         GoRoute(
           path: '/signup',
-          name: AppRouteNames.signupRoute,
+          name: AppRouteNames.userSignupRoute,
           builder: (context, state) => const SignUpPage(),
         ),
         GoRoute(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
 import 'package:food_app/core/utils/text_res.dart';
@@ -110,7 +111,8 @@ class _LoginContainerWidgetsState
                   ),
                 ),
                 TextButton(
-                  onPressed: () => context.push('/signup'),
+                  onPressed: () =>
+                      context.push(AppRouteNames.confirmChefRoute),
                   child: const Text(
                     "SIGN UP",
                     style: TextStyle(

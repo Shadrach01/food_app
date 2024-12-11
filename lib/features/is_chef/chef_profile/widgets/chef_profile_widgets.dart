@@ -14,20 +14,20 @@ class ChefProfileWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        ChefProfileAppBar(),
-        SizedBox(height: 20),
+        const ChefProfileAppBar(),
+        const SizedBox(height: 20),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              ChefPersonalInfoTile(),
-              SizedBox(height: 20),
-              WithdrawalHistoryTile(),
-              SizedBox(height: 20),
-              UsersReviewTile(),
-              SizedBox(height: 20),
+              const ChefPersonalInfoTile(),
+              const SizedBox(height: 20),
+              const WithdrawalHistoryTile(),
+              const SizedBox(height: 20),
+              const UsersReviewTile(),
+              const SizedBox(height: 20),
               LogOutTile(),
             ],
           ),

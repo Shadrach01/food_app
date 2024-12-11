@@ -1,34 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_app/core/common/app_snackbar.dart';
 import 'package:food_app/core/common/widgets/app_container.dart';
+import 'package:food_app/core/common/widgets/custom_app_bar.dart';
+import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
-import 'package:food_app/features/auth/chef_or_user/stateProvider/is_chef_state_provider.dart';
+import 'package:go_router/go_router.dart';
 
-import '../provider/is_chef_supabase_update.dart';
-
-class ChefOrUserWidgets extends ConsumerStatefulWidget {
+class ChefOrUserWidgets extends StatefulWidget {
   const ChefOrUserWidgets({super.key});
 
   @override
-  ConsumerState<ChefOrUserWidgets> createState() =>
-      _ChefOrUserWidgetsState();
+  State<ChefOrUserWidgets> createState() => _ChefOrUserWidgetsState();
 }
 
-class _ChefOrUserWidgetsState
-    extends ConsumerState<ChefOrUserWidgets> {
-  late IsChefUpdate _isChefUpdate;
-
-  @override
-  void didChangeDependencies() {
-    _isChefUpdate = IsChefUpdate();
-    super.didChangeDependencies();
-  }
+class _ChefOrUserWidgetsState extends State<ChefOrUserWidgets> {
+  bool? isChef;
 
   @override
   Widget build(BuildContext context) {
     // Watch the provider to get the current value
-    final isChef = ref.watch(isChefProvider);
+    // final isChef = ref.watch(isChefProvider);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 20,
@@ -61,8 +54,9 @@ class _ChefOrUserWidgetsState
             groupValue: isChef,
             activeColor: ColorRes.containerKColor,
             onChanged: (value) {
-              // Update the state using RiverPod's notifier
-              ref.read(isChefProvider.notifier).state = value;
+              setState(() {
+                isChef = value;
+              });
             },
           ),
           RadioListTile(
@@ -78,13 +72,23 @@ class _ChefOrUserWidgetsState
             groupValue: isChef,
             activeColor: ColorRes.containerKColor,
             onChanged: (value) {
-              // Update the state using RiverPod's notifier
-              ref.read(isChefProvider.notifier).state = value;
+              setState(() {
+                isChef = value;
+              });
             },
           ),
           const SizedBox(height: 100),
           GestureDetector(
-            onTap: () => _isChefUpdate.updateUserIsChef(context, ref),
+            onTap: () {
+              if (isChef == null) {
+                AppSnackBar.show(context,
+                    message: "No option selected");
+              } else if (isChef == true) {
+                context.go(AppRouteNames.chefSignUpRoute);
+              } else {
+                context.go(AppRouteNames.userSignupRoute);
+              }
+            },
             child: const AppContainer(
               child: Text(
                 "Continue",

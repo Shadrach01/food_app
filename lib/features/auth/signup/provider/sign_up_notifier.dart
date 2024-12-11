@@ -19,12 +19,25 @@ class SignUpNotifier extends StateNotifier<SignUpState> {
     state = state.copyWith(email: email);
   }
 
+  onRestaurantNameChanged(String restaurantName) {
+    state = state.copyWith(restaurantName: restaurantName);
+  }
+
+  onRestaurantAddressChanged(String restaurantAddress) {
+    state = state.copyWith(restaurantAddress: restaurantAddress);
+  }
+
   onPasswordChanged(String password) {
     state = state.copyWith(password: password);
   }
 
   confirmPasswordChanged(String confirmPassword) {
     state = state.copyWith(confirmPassword: confirmPassword);
+  }
+
+  // Clear the entire state
+  void resetState() {
+    state = SignUpState();
   }
 }
 

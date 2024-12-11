@@ -1,14 +1,18 @@
-class UserModel {
+class ChefModel {
   final String? name;
   final String? email;
   final String? uid;
+  final String? restaurantName;
+  final String? restaurantAddress;
   final String? profilePic;
 
-  UserModel({
+  ChefModel({
     this.name,
     this.email,
     this.uid,
+    this.restaurantName,
     this.profilePic,
+    this.restaurantAddress,
   });
 
   // Convert to Map
@@ -18,6 +22,8 @@ class UserModel {
       'name': name,
       'email': email,
       'profile_pic': profilePic,
+      'restaurant_name': restaurantName,
+      'restaurant_address': restaurantAddress,
     };
   }
 
@@ -25,16 +31,18 @@ class UserModel {
    Receive as a JSon format
   and convert to UserModel
  */
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
+  factory ChefModel.fromMap(Map<String, dynamic> map) {
+    return ChefModel(
       uid: map['uid'],
       name: map['name'],
       email: map['email'],
       profilePic: map['profile_pic'],
+      restaurantName: map['restaurant_name'],
+      restaurantAddress: map['restaurant_address'],
     );
   }
 
-  static final empty = UserModel(
+  static final empty = ChefModel(
     name: '',
     email: '',
   );
@@ -42,6 +50,6 @@ class UserModel {
 // Override toString method for easy debugging
   @override
   String toString() {
-    return 'UserModel{name: $name, email: $email, uid: $uid, profilePic: $profilePic}';
+    return 'ChefModel{name: $name, email: $email, uid: $uid, restaurantName: $restaurantName, restaurantLocation: $restaurantAddress, proflePic: $profilePic}';
   }
 }

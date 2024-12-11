@@ -1,32 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/core/utils/color_res.dart';
-import 'package:food_app/features/auth/signup/widget/signup_button.dart';
-import 'package:food_app/features/auth/signup/widget/signup_textfields.dart';
+import 'package:food_app/features/auth/signup/chef/widget/chef_signup_textfields.dart';
+import 'package:food_app/features/auth/signup/user/widget/user_signup_button.dart';
 
-class SignUpContainerWidgets extends StatelessWidget {
+class ChefSignUpContainerWidgets extends StatelessWidget {
   final TextEditingController nameController;
   final TextEditingController emailController;
+  final TextEditingController restaurantNameController;
+  final TextEditingController restaurantAddressController;
   final TextEditingController pwController;
   final TextEditingController rPwController;
 
   final void Function(String)? onNameChanged;
   final void Function(String)? onEmailChanged;
+  final void Function(String)? onRestaurantNameChanged;
+  final void Function(String)? onRestaurantAddressChanged;
   final void Function(String)? onPasswordChanged;
   final void Function(String)? onConfirmPasswordChanged;
   final void Function()? onSignUp;
 
   final bool isLoading;
 
-  const SignUpContainerWidgets({
+  const ChefSignUpContainerWidgets({
     super.key,
     required this.onSignUp,
     required this.nameController,
     required this.emailController,
+    required this.restaurantNameController,
+    required this.restaurantAddressController,
     required this.pwController,
     required this.rPwController,
     required this.isLoading,
     this.onNameChanged,
     this.onEmailChanged,
+    this.onRestaurantNameChanged,
+    this.onRestaurantAddressChanged,
     this.onPasswordChanged,
     this.onConfirmPasswordChanged,
   });
@@ -42,17 +50,26 @@ class SignUpContainerWidgets extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        padding: const EdgeInsets.only(
+          right: 25,
+          left: 25,
+          bottom: 25,
+        ),
         child: Column(
           children: [
             const SizedBox(height: 30),
-            SignUpTextfields(
+            ChefSignUpTextfields(
               nameController: nameController,
               emailController: emailController,
+              restaurantNameController: restaurantNameController,
+              restaurantAddressController:
+                  restaurantAddressController,
               pwController: pwController,
               rPwController: rPwController,
               onNameChanged: onNameChanged,
               onEmailChanged: onEmailChanged,
+              onRestaurantNameChanged: onRestaurantNameChanged,
+              onRestaurantAddressChanged: onRestaurantAddressChanged,
               onPasswordChanged: onPasswordChanged,
               onConfirmPasswordChanged: onConfirmPasswordChanged,
             ),

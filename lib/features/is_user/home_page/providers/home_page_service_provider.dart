@@ -10,7 +10,7 @@ final userNameProvider = FutureProvider<String?>((ref) async {
 });
 
 class HomePageService {
-  final database = Supabase.instance.client.from('users');
+  final database = Supabase.instance.client.from('normal_users');
 
   Future<String?> fetchUserName() async {
     try {

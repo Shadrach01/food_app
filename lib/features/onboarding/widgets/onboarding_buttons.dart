@@ -38,7 +38,7 @@ class OnboardingButtons extends ConsumerWidget {
                   .read(indexDotProvider.notifier)
                   .changeIndex(index + 1);
             } else {
-              context.go(AppRouteNames.loginRoute);
+              context.go(AppRouteNames.confirmChefRoute);
             }
           },
           child: AppContainer(
@@ -56,7 +56,7 @@ class OnboardingButtons extends ConsumerWidget {
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {
-            context.go(AppRouteNames.loginRoute);
+            context.go(AppRouteNames.confirmChefRoute);
           },
           child: const AppContainer(
             height: 50,
