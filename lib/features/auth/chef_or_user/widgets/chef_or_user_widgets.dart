@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/app_snackbar.dart';
 import 'package:food_app/core/common/widgets/app_container.dart';
-import 'package:food_app/core/common/widgets/custom_app_bar.dart';
 import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';

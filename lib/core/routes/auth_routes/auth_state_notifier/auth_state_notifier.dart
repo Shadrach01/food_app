@@ -5,8 +5,11 @@
 
  */
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../auth_enum_class.dart';
 
 class AuthService {
   final SupabaseClient _supabaseClient;
@@ -27,20 +30,49 @@ class AuthService {
       _supabaseClient.auth.onAuthStateChange
           .map((event) => event.event);
 
-  // Fetch the is_chef status of the logged-in user
-  Future<bool> getIsChefStatus() async {
+  // Determine if the user is a chef or a normal user
+
+  Future<UserRole> getUserRole() async {
     final user = _supabaseClient.auth.currentUser;
 
-    if (user != null) {
-      final response = await _supabaseClient
-          .from('users')
-          .select('is_chef')
-          .eq('uid', user.id)
-          .single();
-
-      return response['is_chef'] as bool;
+    if (user == null) {
+      return UserRole.unauthenticated;
     }
-    return false;
+
+    try {
+      // Check if the user exists in the chef table
+      final chefResponse = await _supabaseClient
+          .from('chefs')
+          .select('id')
+          .eq('uid', user.id)
+          .maybeSingle();
+      if (chefResponse != null) {
+        return UserRole.chef;
+      }
+
+      // Check in the normal_user table if user exists
+      final normalUserResponse = await _supabaseClient
+          .from('normal_users')
+          .select('id')
+          .eq('uid', user.id)
+          .maybeSingle();
+      if (normalUserResponse != null) {
+        return UserRole.normalUser;
+      }
+
+      // if (chefResponse != null) {
+      //   return UserRole.chef;
+      // } else if (normalUserResponse != null) {
+      //   return UserRole.normalUser;
+      // } else {
+      //   return UserRole.unauthenticated;
+      // }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error fetching user role: $e');
+      }
+    }
+    return UserRole.unauthenticated;
   }
 }
 

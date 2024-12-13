@@ -83,7 +83,7 @@ class AddNewFoodController {
     }
     if (foodImages.isEmpty) {
       AppSnackBar.show(context,
-          message: "Input at least one picture");
+          message: "Select at least one picture");
       return;
     }
     if (state.price.isEmpty || foodPrice.isEmpty) {

@@ -50,6 +50,7 @@ class AddNewFoodWidgets extends ConsumerWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 15),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -98,7 +99,7 @@ class AddNewFoodWidgets extends ConsumerWidget {
                                 ),
                               )
                             : const Text(
-                                "SAVE CHANGES",
+                                "UPLOAD FOOD",
                                 style: TextStyle(
                                   color: ColorRes.appKWhite,
                                   fontSize: 20,

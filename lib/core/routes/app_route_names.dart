@@ -5,9 +5,6 @@ class AppRouteNames {
 
   static const String confirmChefRoute = '/confirmChefPage';
 
-  // Loading Screen
-  static const String loadingRoute = '/loadingPage';
-
   // Chef Routes
   static const String chefSignUpRoute = '/chefSignUpPage';
   static const String dashBoardRoute = '/chefDashBoard';

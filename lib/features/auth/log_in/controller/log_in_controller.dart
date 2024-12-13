@@ -12,13 +12,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/app_snackbar.dart';
 import 'package:food_app/core/global_loader/global_loader.dart';
 import 'package:food_app/core/routes/app_route_names.dart';
-import 'package:food_app/core/routes/auth_routes/auth_enum_class.dart';
 import 'package:food_app/features/auth/log_in/provider/log_in_notifier.dart';
 import 'package:food_app/features/auth/log_in/repo/log_in_repo.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-import '../../../../core/routes/auth_routes/provider/user_auth_provider.dart';
 
 class LogInController {
   LogInController();
@@ -76,20 +73,34 @@ class LogInController {
       if (credential.session != null) {
         final userId = credential.user!.id;
 
-        // Retrieve user details from 'users table
-        final userDetails = await supabaseClient
-            .from('users')
-            .select('is_chef')
+        // Check if the user is a Chef or a Normal User
+        final chefQuery = await supabaseClient
+            .from('chefs')
+            .select()
             .eq('uid', userId)
-            .single();
+            .maybeSingle();
 
-        final isChef = userDetails['is_chef'];
-
-        if (isChef) {
+        if (chefQuery != null) {
+          // User is a chef
           context.go(AppRouteNames.dashBoardRoute);
-        } else {
-          context.go(AppRouteNames.homePageRoute);
+          return;
         }
+
+        // Check if the user is a Chef or a Normal User
+        final normalUserQuery = await supabaseClient
+            .from('normal_users')
+            .select()
+            .eq('uid', userId)
+            .maybeSingle();
+
+        if (normalUserQuery != null) {
+          // User is a normal user
+          context.go(AppRouteNames.homePageRoute);
+          return;
+        }
+
+        // If user is not in any of the table, show an error
+        AppSnackBar.show(context, message: "User not found");
       }
     } on AuthException catch (e) {
       AppSnackBar.show(context, message: e.message);
