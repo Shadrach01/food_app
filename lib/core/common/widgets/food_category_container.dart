@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/core/common/widgets/skeleton_widget.dart';
 import 'package:food_app/core/utils/color_res.dart';
 
 class FoodCategoryContainer extends StatelessWidget {
-  final String title;
+  final Widget title;
   final Widget subTitle;
-  final String image;
+  final DecorationImage image;
   final void Function()? onTap;
 
   const FoodCategoryContainer({
@@ -40,10 +41,7 @@ class FoodCategoryContainer extends StatelessWidget {
             Container(
               height: 90,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(image),
-                  fit: BoxFit.contain,
-                ),
+                image: image,
                 // color: ColorRes.appKGrey,
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -55,13 +53,7 @@ class FoodCategoryContainer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  title,
                   const SizedBox(height: 4),
                   subTitle,
                 ],
@@ -70,6 +62,31 @@ class FoodCategoryContainer extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class FoodCategorySkeleton extends StatelessWidget {
+  const FoodCategorySkeleton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        SkeletonWidget(height: 90),
+        Padding(
+          padding: EdgeInsets.only(top: 5, left: 8.0, right: 8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SkeletonWidget(),
+              SizedBox(height: 4),
+              SkeletonWidget(),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

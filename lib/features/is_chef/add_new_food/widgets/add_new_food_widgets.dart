@@ -8,6 +8,7 @@ import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/features/is_chef/add_new_food/controller/add_new_food_controller.dart';
 import 'package:food_app/features/is_chef/add_new_food/provider/add_new_food_notifier.dart';
+import 'package:food_app/features/is_chef/add_new_food/widgets/food_type_checkbox.dart';
 import 'package:food_app/features/is_chef/add_new_food/widgets/ingredients_widget.dart';
 import 'package:food_app/features/is_chef/add_new_food/widgets/price_and_delivery.dart';
 import 'package:food_app/features/is_chef/add_new_food/widgets/upload_food_image_widgets.dart';
@@ -55,6 +56,8 @@ class AddNewFoodWidgets extends ConsumerWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    const SizedBox(height: 20),
+                    FoodTypeCheckbox(),
                     const SizedBox(height: 20),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,

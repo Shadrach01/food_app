@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/widgets/food_category_container.dart';
+import 'package:food_app/core/common/widgets/skeleton_widget.dart';
 import 'package:food_app/core/utils/color_res.dart';
-import 'package:food_app/core/utils/image_res.dart';
+import 'package:food_app/features/is_user/home_page/providers/home_page_service_provider.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../home_page/providers/food_title_provider.dart';
-
 class PopularFoodGridLayout extends ConsumerWidget {
-  const PopularFoodGridLayout({super.key});
+  final String foodType;
+
+  const PopularFoodGridLayout({
+    super.key,
+    required this.foodType,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final text = ref.watch(selectedFoodProvider)!;
+    final foodList = ref.watch(availableFoodProvider(foodType));
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Popular food}",
-          style: const TextStyle(
+        const Text(
+          "Popular food",
+          style: TextStyle(
             fontSize: 20,
             color: ColorRes.appKBlack,
           ),
@@ -27,40 +31,90 @@ class PopularFoodGridLayout extends ConsumerWidget {
         const SizedBox(height: 20),
         SizedBox(
           height: 380,
-          child: GridView.builder(
-            padding: EdgeInsets.zero,
-            gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // Set the number of columns to 2
-              crossAxisSpacing: 40, // Space between row
-              mainAxisSpacing: 20, // Space between columns
-              childAspectRatio:
-                  .9, // Controls the aspect ratio of each item
+          child: foodList.when(
+            data: (foods) => GridView.builder(
+              padding: EdgeInsets.zero,
+              gridDelegate:
+                  const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                // Set the number of columns to 2
+                crossAxisSpacing: 40,
+                // Space between row
+                mainAxisSpacing: 20,
+                // Space between columns
+                childAspectRatio:
+                    .9, // Controls the aspect ratio of each item
+              ),
+              itemCount:
+                  foods.length, // The number of items to display
+              itemBuilder: (context, index) {
+                final food = foods[index];
+                return foodTypeContainer(
+                  context,
+                  ref,
+                  food.foodName!,
+                  food.foodDetails!,
+                  food.price!,
+                  food.foodImages![0],
+                );
+              },
             ),
-            itemCount: 10, // The number of items to display
-            itemBuilder: (context, index) {
-              return foodTypeContainer(context, ref);
-            },
+            error: (err, stack) => Text('Error: $err'),
+            loading: () => GridView.builder(
+              padding: EdgeInsets.zero,
+              gridDelegate:
+                  const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                // Set the number of columns to 2
+                crossAxisSpacing: 40,
+                // Space between row
+                mainAxisSpacing: 20,
+                // Space between columns
+                childAspectRatio:
+                    .9, // Controls the aspect ratio of each item
+              ),
+              itemCount: 5, // The number of items to display
+              itemBuilder: (context, index) {
+                return const FoodCategorySkeleton();
+              },
+            ),
           ),
         ),
       ],
     );
   }
 
-  Widget foodTypeContainer(BuildContext context, WidgetRef ref) {
-    // final foodDetails = ref.watch(selectedFoodProvider)!;
+  Widget foodTypeContainer(
+    BuildContext context,
+    WidgetRef ref,
+    String foodName,
+    String foodDetails,
+    String foodPrice,
+    String image,
+  ) {
     return GestureDetector(
       onTap: () => context.push('/foodDetails'),
       child: FoodCategoryContainer(
-        image: ImageRes.user,
-        title: "Pansi Restaurant",
+        image: DecorationImage(
+          image: NetworkImage(image),
+          fit: BoxFit.cover,
+        ),
+        title: Text(
+          foodName,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         subTitle: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Uttora Coffee House",
-              style: TextStyle(
+            Text(
+              foodDetails,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
                 color: ColorRes.appKGrey,
                 fontSize: 13,
               ),
@@ -69,8 +123,8 @@ class PopularFoodGridLayout extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$50",
-                  style: const TextStyle(
+                  "\$$foodPrice",
+                  style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),

@@ -58,14 +58,10 @@ class PriceAndDelivery extends ConsumerWidget {
                         controller: controller.foodPriceController,
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
-                          print("onChanged value called $value");
-
                           ref
                               .read(
                                   addNewFoodNotifierProvider.notifier)
                               .onPriceSelected(value);
-
-                          print("Updated price: $value");
                         }),
                   ),
                 ],

@@ -3,6 +3,7 @@ class FoodModel {
   final List<String>? foodImages;
   final String? price;
   final String? foodDetails;
+  final String? foodType;
   final String? pickupOrDelivery;
   final List<String>? ingredients;
 
@@ -11,6 +12,7 @@ class FoodModel {
     this.foodImages,
     this.price,
     this.foodDetails,
+    this.foodType,
     this.pickupOrDelivery,
     this.ingredients,
   });
@@ -22,6 +24,7 @@ class FoodModel {
       "food_images": foodImages,
       "price": price,
       "food_details": foodDetails,
+      "food_type": foodType,
       "pick_up_or_delivery": pickupOrDelivery,
       "ingredients": ingredients,
     };
@@ -36,6 +39,7 @@ class FoodModel {
       ),
       price: map["price"],
       foodDetails: map["food_details"],
+      foodType: map["food_type"],
       pickupOrDelivery: map["pick_up_or_delivery"],
       ingredients: List<String>.from(
         map["ingredients"] ?? [],

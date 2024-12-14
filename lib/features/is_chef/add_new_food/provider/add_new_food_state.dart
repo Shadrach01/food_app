@@ -10,6 +10,7 @@ class AddNewFoodState {
   final List<String> foodImages;
   final String price;
   final String foodDetails;
+  final String foodType;
   final String pickupOrDelivery;
   final List<String> ingredients;
 
@@ -19,6 +20,7 @@ class AddNewFoodState {
     List<String>? foodImages,
     this.price = '',
     this.foodDetails = '',
+    this.foodType = '',
     this.pickupOrDelivery = '',
     List<String>? ingredients,
   })  : foodImages = foodImages ?? [],
@@ -30,6 +32,7 @@ class AddNewFoodState {
     List<String>? foodImages,
     String? price,
     String? foodDetails,
+    String? foodType,
     String? pickupOrDelivery,
     List<String>? ingredients,
   }) {
@@ -39,6 +42,7 @@ class AddNewFoodState {
       foodImages: foodImages ?? this.foodImages,
       price: price ?? this.price,
       foodDetails: foodDetails ?? this.foodDetails,
+      foodType: foodType ?? this.foodType,
       pickupOrDelivery: pickupOrDelivery ?? this.pickupOrDelivery,
       ingredients: ingredients ?? this.ingredients,
     );

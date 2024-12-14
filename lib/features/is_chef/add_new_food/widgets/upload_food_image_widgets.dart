@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/features/is_chef/add_new_food/controller/add_new_food_controller.dart';
 import 'package:food_app/features/is_chef/add_new_food/provider/add_new_food_notifier.dart';
-import 'package:food_app/features/is_chef/add_new_food/provider/add_new_food_state.dart';
 
 class UploadFoodImageWidgets extends ConsumerStatefulWidget {
   const UploadFoodImageWidgets({
@@ -29,9 +28,7 @@ class _UploadFoodImageWidgetsState
 
   @override
   Widget build(BuildContext context) {
-    // final image = _controller?.imageFile?.path;
-    final addNewFoodState =
-        ref.watch(addNewFoodNotifierProvider) as AddNewFoodState;
+    final addNewFoodState = ref.watch(addNewFoodNotifierProvider);
 
     final foodImages = addNewFoodState.foodImages;
     return Column(
@@ -84,7 +81,9 @@ class _UploadFoodImageWidgetsState
               ? ColorRes.appKLightGrey.withOpacity(.2)
               : ColorRes.appKTransparent,
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: ColorRes.appKGrey),
+          border: selectedImage != null
+              ? Border.all(color: ColorRes.appKTransparent)
+              : Border.all(color: ColorRes.appKGrey),
           image: selectedImage != null
               ? DecorationImage(
                   image: FileImage(

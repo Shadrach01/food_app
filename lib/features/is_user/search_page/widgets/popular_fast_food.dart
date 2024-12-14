@@ -13,7 +13,7 @@ class PopularFastFood extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Popular Fast Food",
+          "Available Fast Food",
           style: TextStyle(
             fontSize: 20,
             color: ColorRes.appKBlack,
@@ -33,8 +33,18 @@ class PopularFastFood extends StatelessWidget {
             itemCount: 10, // The number of items to display
             itemBuilder: (context, index) {
               return const FoodCategoryContainer(
-                image: ImageRes.pizza,
-                title: "Pansi Restaurant",
+                image: DecorationImage(
+                  image: AssetImage(ImageRes.pizza),
+                  fit: BoxFit.cover,
+                ),
+                title: Text(
+                  "Title Here",
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 subTitle: Text(
                   "Uttora Coffee House",
                   style: TextStyle(

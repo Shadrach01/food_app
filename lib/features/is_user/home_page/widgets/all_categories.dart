@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/widgets/food_category_container.dart';
-import 'package:food_app/core/models/food_model.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
 import 'package:go_router/go_router.dart';
@@ -114,17 +113,22 @@ class AllCategories extends ConsumerWidget {
       child: SizedBox(
         width: 140,
         child: FoodCategoryContainer(
-          image: image,
+          image: DecorationImage(
+            image: AssetImage(image),
+            fit: BoxFit.cover,
+          ),
           onTap: () {
-            // ref.read(selectedFoodProvider.notifier).state =
-            //     SelectedFood(
-            //   title: title,
-            //   image: image,
-            //   price: price,
-            // );
+            ref.read(selectedFoodProvider.notifier).state = title;
+
             context.push('/foodPage');
           },
-          title: title,
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           subTitle: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

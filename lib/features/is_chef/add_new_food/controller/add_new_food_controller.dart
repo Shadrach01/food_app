@@ -35,6 +35,13 @@ class AddNewFoodController {
     }
   }
 
+  // Logic to select the food type
+  void updateFoodType(WidgetRef ref, String foodType) {
+    ref
+        .read(addNewFoodNotifierProvider.notifier)
+        .onFoodTypeSelected(foodType);
+  }
+
   // Logic to select Pick up or Delivery
   void updatePickUpOrDelivery(WidgetRef ref, String option) {
     ref
@@ -68,6 +75,7 @@ class AddNewFoodController {
     String foodName = state.foodName;
     String foodPrice = state.price;
     String foodDetails = state.foodDetails;
+    String foodType = state.foodType;
     String pickupOrDelivery = state.pickupOrDelivery;
     List<String> foodImages = state.foodImages;
     List<String> ingredients = state.ingredients;
@@ -77,6 +85,11 @@ class AddNewFoodController {
     foodDetailsController.text = foodDetails;
 
     // Input validation
+
+    if (state.foodType.isEmpty || foodType.isEmpty) {
+      AppSnackBar.show(context, message: "Select the food type");
+      return;
+    }
     if (state.foodName.isEmpty || foodName.isEmpty) {
       AppSnackBar.show(context, message: "Input the food name");
       return;
@@ -90,6 +103,7 @@ class AddNewFoodController {
       AppSnackBar.show(context, message: "Input the food price");
       return;
     }
+
     if (state.pickupOrDelivery.isEmpty || pickupOrDelivery.isEmpty) {
       AppSnackBar.show(context, message: "Select delivery method");
       return;
@@ -129,6 +143,7 @@ class AddNewFoodController {
       foodImages: uploadImagesUrl,
       price: foodPrice,
       foodDetails: foodDetails,
+      foodType: foodType,
       pickupOrDelivery: pickupOrDelivery,
       ingredients: ingredients,
     );

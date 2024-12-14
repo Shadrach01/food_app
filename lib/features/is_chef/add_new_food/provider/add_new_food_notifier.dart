@@ -27,6 +27,10 @@ class AddNewFoodNotifier extends StateNotifier<AddNewFoodState> {
     state = state.copyWith(price: price);
   }
 
+  void onFoodTypeSelected(String foodType) {
+    state = state.copyWith(foodType: foodType);
+  }
+
   void onPickUpOrDeliverySelected(String option) {
     state = state.copyWith(pickupOrDelivery: option);
   }

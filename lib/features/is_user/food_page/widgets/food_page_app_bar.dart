@@ -12,11 +12,13 @@ Custom app bar for the food page only
 
  */
 
-class FoodPageAppBar extends ConsumerWidget {
-  const FoodPageAppBar({super.key});
+class FoodPageAppBar extends StatelessWidget {
+  final String title;
+
+  const FoodPageAppBar({super.key, required this.title});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return CustomAppBar(
       title: Container(
         height: 50,
@@ -36,9 +38,8 @@ class FoodPageAppBar extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "Title",
-              // ref.watch(selectedFoodProvider)!.title!,
-              style: TextStyle(
+              title,
+              style: const TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 14,
               ),
