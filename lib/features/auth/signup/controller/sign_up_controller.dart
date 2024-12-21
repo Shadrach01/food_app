@@ -7,6 +7,8 @@ CONTROLLER CLASS FOR THE SIGNUP PAGE
 
  */
 
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,6 +18,7 @@ import 'package:food_app/core/routes/app_route_names.dart';
 import 'package:food_app/features/auth/signup/provider/sign_up_notifier.dart';
 import 'package:food_app/features/auth/signup/repo/sign_up_repo.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/models/chefs_model.dart';
@@ -133,6 +136,18 @@ class SignUpController {
     }
   }
 
+  // Pick restaurant image method
+  Future pickRestaurantImage(WidgetRef ref) async {
+    // handle he image picking
+    final pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      ref
+          .read(signUpNotifierProvider.notifier)
+          .onRestaurantImageSelected(pickedImage.path);
+    }
+  }
+
   Future<void> handleChefSignUp(
       BuildContext context, WidgetRef ref) async {
     var state = ref.read(signUpNotifierProvider);
@@ -143,6 +158,7 @@ class SignUpController {
     String email = state.email;
     String restaurantName = state.restaurantName;
     String restaurantAddress = state.restaurantAddress;
+    String restaurantImage = state.restaurantImage;
     String password = state.password;
     String confirmPassword = state.confirmPassword;
 
@@ -163,6 +179,24 @@ class SignUpController {
       return;
     }
 
+    if (state.restaurantName.isEmpty || restaurantName.isEmpty) {
+      AppSnackBar.show(context,
+          message: "Enter name of your restaurant is empty");
+      return;
+    }
+
+    if (state.restaurantAddress.isEmpty ||
+        restaurantAddress.isEmpty) {
+      AppSnackBar.show(context,
+          message: "Enter your restaurant address is empty");
+      return;
+    }
+
+    if (restaurantImage.isEmpty) {
+      AppSnackBar.show(context, message: "Select an image");
+      return;
+    }
+
     if (state.password.isEmpty ||
         state.confirmPassword.isEmpty ||
         password.isEmpty ||
@@ -180,6 +214,22 @@ class SignUpController {
 
     // Show the loading icon
     ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+    String uploadedImageUrl = '';
+    try {
+      File imageFile = File(restaurantImage);
+      String fileName =
+          'restaurant_image_${state.restaurantName}_${DateTime.now().millisecondsSinceEpoch}.jpg';
+      final imageUrl =
+          await SignUpRepo.uploadImage(imageFile, fileName);
+      uploadedImageUrl = imageUrl;
+    } catch (e) {
+      AppSnackBar.show(
+        context,
+        message: "Error uploading restaurant image: ${e.toString()}",
+      );
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+      return;
+    }
 
     try {
       final credential = await SignUpRepo.signUp(email, password);
@@ -197,6 +247,7 @@ class SignUpController {
           email: email,
           restaurantName: restaurantName,
           restaurantAddress: restaurantAddress,
+          restaurantImage: uploadedImageUrl,
         );
         if (kDebugMode) {
           print("Data sent to supabse: ${chefModel.toMap()}");
@@ -216,7 +267,7 @@ class SignUpController {
       ref.read(signUpNotifierProvider.notifier).resetState();
 
       nameController.clear();
-      nameController.clear();
+
       emailController.clear();
       restaurantNameController.clear();
       restaurantAddressController.clear();

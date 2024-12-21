@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/widgets/custom_app_bar.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
-
-import '../../home_page/providers/food_title_provider.dart';
+import 'package:food_app/features/is_user/food_details/provider/selected_food_model_provider.dart';
 
 /// The food Image
 class FoodImageContainer extends ConsumerWidget {
@@ -15,6 +14,8 @@ class FoodImageContainer extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
+    final image =
+        ref.watch(selectedFoodModelProvider)?.foodImages![0];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,10 +25,14 @@ class FoodImageContainer extends ConsumerWidget {
               width: MediaQuery.of(context).size.width,
               height: 300,
               decoration: BoxDecoration(
-                // image: DecorationImage(
-                //   image: AssetImage(
-                //       ref.watch(selectedFoodProvider)!.image!),
-                // ),
+                image: image != null
+                    ? DecorationImage(
+                        image: NetworkImage(
+                          image,
+                        ),
+                        fit: BoxFit.cover,
+                      )
+                    : null,
                 color: ColorRes.containerKColor.withOpacity(.7),
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(30),

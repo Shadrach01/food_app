@@ -4,6 +4,7 @@ class ChefModel {
   final String? uid;
   final String? restaurantName;
   final String? restaurantAddress;
+  final String? restaurantImage;
   final String? profilePic;
 
   ChefModel({
@@ -13,6 +14,7 @@ class ChefModel {
     this.restaurantName,
     this.profilePic,
     this.restaurantAddress,
+    this.restaurantImage,
   });
 
   // Convert to Map
@@ -24,6 +26,7 @@ class ChefModel {
       'profile_pic': profilePic,
       'restaurant_name': restaurantName,
       'restaurant_address': restaurantAddress,
+      'restaurant_image': restaurantImage,
     };
   }
 
@@ -39,6 +42,7 @@ class ChefModel {
       profilePic: map['profile_pic'],
       restaurantName: map['restaurant_name'],
       restaurantAddress: map['restaurant_address'],
+      restaurantImage: map['restaurant_image'],
     );
   }
 
@@ -50,6 +54,9 @@ class ChefModel {
 // Override toString method for easy debugging
   @override
   String toString() {
-    return 'ChefModel{name: $name, email: $email, uid: $uid, restaurantName: $restaurantName, restaurantLocation: $restaurantAddress, proflePic: $profilePic}';
+    return 'ChefModel{name: $name, email: $email,'
+        ' uid: $uid, restaurantName: $restaurantName, '
+        'restaurantLocation: $restaurantAddress,'
+        ' proflePic: $profilePic, restaurantImage = $restaurantImage,}';
   }
 }

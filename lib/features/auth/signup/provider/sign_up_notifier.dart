@@ -27,6 +27,10 @@ class SignUpNotifier extends StateNotifier<SignUpState> {
     state = state.copyWith(restaurantAddress: restaurantAddress);
   }
 
+  onRestaurantImageSelected(String restaurantImage) {
+    state = state.copyWith(restaurantImage: restaurantImage);
+  }
+
   onPasswordChanged(String password) {
     state = state.copyWith(password: password);
   }

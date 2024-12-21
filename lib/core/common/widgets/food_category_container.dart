@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/core/common/widgets/skeleton_widget.dart';
+import 'package:food_app/core/common/widgets/shimmer_widget.dart';
 import 'package:food_app/core/utils/color_res.dart';
 
 class FoodCategoryContainer extends StatelessWidget {
+  final DecorationImage? image;
+  final Widget? imagePlaceholder;
   final Widget title;
   final Widget subTitle;
-  final DecorationImage image;
-  final void Function()? onTap;
+  final VoidCallback? onTap;
 
   const FoodCategoryContainer({
     super.key,
+    this.image,
+    this.imagePlaceholder,
     required this.title,
     required this.subTitle,
     this.onTap,
-    required this.image,
   });
 
   @override
@@ -42,9 +44,13 @@ class FoodCategoryContainer extends StatelessWidget {
               height: 90,
               decoration: BoxDecoration(
                 image: image,
-                // color: ColorRes.appKGrey,
+                color:
+                    image == null ? ColorRes.appKTransparent : null,
                 borderRadius: BorderRadius.circular(20),
               ),
+              child: image == null
+                  ? const ShimmerWidget(height: 90)
+                  : null,
             ),
             Padding(
               padding:
@@ -62,31 +68,6 @@ class FoodCategoryContainer extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class FoodCategorySkeleton extends StatelessWidget {
-  const FoodCategorySkeleton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        SkeletonWidget(height: 90),
-        Padding(
-          padding: EdgeInsets.only(top: 5, left: 8.0, right: 8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SkeletonWidget(),
-              SizedBox(height: 4),
-              SkeletonWidget(),
-            ],
-          ),
-        )
-      ],
     );
   }
 }

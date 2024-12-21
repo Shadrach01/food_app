@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/features/auth/signup/chef/widget/chef_signup_textfields.dart';
+import 'package:food_app/features/auth/signup/chef/widget/restaurant_image_widget.dart';
 import 'package:food_app/features/auth/signup/user/widget/user_signup_button.dart';
 
 class ChefSignUpContainerWidgets extends StatelessWidget {
@@ -42,7 +43,6 @@ class ChefSignUpContainerWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: MediaQuery.of(context).size.height * 1,
       decoration: const BoxDecoration(
         color: ColorRes.appKWhite,
         borderRadius: BorderRadius.vertical(
@@ -58,6 +58,7 @@ class ChefSignUpContainerWidgets extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 30),
+            const RestaurantImageWidget(),
             ChefSignUpTextfields(
               nameController: nameController,
               emailController: emailController,

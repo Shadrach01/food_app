@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_app/core/models/chefs_model.dart';
 import 'package:food_app/core/models/food_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -18,10 +20,33 @@ final availableFoodProvider =
   return await homePageService.getAvailableFoodByType(foodType);
 });
 
+// Available chefs
+final availableRestaurants =
+    FutureProvider<List<ChefModel>>((ref) async {
+  final homePageService = HomePageService();
+  return await homePageService.getRegisteredChef();
+});
+
 class HomePageService {
   // Get the normal user database
   final normalUserDatabase =
       Supabase.instance.client.from('normal_users');
+
+  // Get available registered chefs
+  final chefDatabase = Supabase.instance.client.from('chefs');
+
+  Future<List<ChefModel>> getRegisteredChef() async {
+    try {
+      final response = await chefDatabase.select();
+      final data = response;
+      return data.map((item) => ChefModel.fromMap(item)).toList();
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error : $e");
+      }
+      throw Exception('Failed to fetch chefs : $e');
+    }
+  }
 
   // Get the food table
   final foodDatabase = Supabase.instance.client.from('food_item');
@@ -36,7 +61,9 @@ class HomePageService {
           response.map((item) => FoodModel.fromMap(item)).toList();
       return data;
     } catch (e) {
-      print("Error: $e");
+      if (kDebugMode) {
+        print("Error: $e");
+      }
       throw Exception('Failed to fetch food items by type: $e');
     }
   }
@@ -47,7 +74,9 @@ class HomePageService {
       final user = Supabase.instance.client.auth.currentUser;
 
       if (user == null) {
-        print("No user is logged in");
+        if (kDebugMode) {
+          print("No user is logged in");
+        }
         return null;
       }
 

@@ -97,6 +97,7 @@ class _UploadFoodImageWidgetsState
         child: selectedImage == null
             ? const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(Icons.cloud_upload, color: ColorRes.appKGrey),
                   Text(

@@ -3,8 +3,8 @@ import 'package:food_app/core/common/widgets/food_category_container.dart';
 import 'package:food_app/core/utils/color_res.dart';
 import 'package:food_app/core/utils/image_res.dart';
 
-class PopularFastFood extends StatelessWidget {
-  const PopularFastFood({super.key});
+class AvailableFastFood extends StatelessWidget {
+  const AvailableFastFood({super.key});
 
   @override
   Widget build(BuildContext context) {

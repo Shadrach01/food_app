@@ -66,7 +66,7 @@ class SearchPageWidgets extends StatelessWidget {
           const SizedBox(height: 20),
           const Expanded(
             flex: 2,
-            child: PopularFastFood(),
+            child: AvailableFastFood(),
           ),
         ],
       ),

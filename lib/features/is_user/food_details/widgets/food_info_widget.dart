@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/core/common/widgets/rate_row.dart';
 import 'package:food_app/core/utils/color_res.dart';
+import 'package:food_app/features/is_user/food_details/provider/selected_food_model_provider.dart';
 
-class FoodInfoWidget extends StatelessWidget {
+class FoodInfoWidget extends ConsumerWidget {
   const FoodInfoWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final food = ref.watch(selectedFoodModelProvider)!;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Name
-        const Text(
-          "Burger Bistro",
-          style: TextStyle(
+        Text(
+          food.foodName!,
+          style: const TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.bold,
           ),
@@ -25,9 +28,9 @@ class FoodInfoWidget extends StatelessWidget {
         const SizedBox(height: 10),
 
         // Description
-        const Text(
-          "Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
-          style: TextStyle(
+        Text(
+          food.foodDetails!,
+          style: const TextStyle(
             fontSize: 17,
             color: ColorRes.appKGrey,
             height: 1.8,
